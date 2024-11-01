@@ -5,9 +5,9 @@ import (
 	"path"
 	"runtime"
 
-	version "github.com/ipfs/kubo"
-	"github.com/ipfs/kubo/core"
-	cmdenv "github.com/ipfs/kubo/core/commands/cmdenv"
+	version "github.com/ipfs/emo"
+	"github.com/ipfs/emo/core"
+	cmdenv "github.com/ipfs/emo/core/commands/cmdenv"
 
 	cmds "github.com/ipfs/go-ipfs-cmds"
 	manet "github.com/multiformats/go-multiaddr/net"

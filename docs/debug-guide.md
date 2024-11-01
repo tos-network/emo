@@ -1,6 +1,6 @@
 # General performance debugging guidelines
 
-This is a document for helping debug Kubo. Please add to it if you can!
+This is a document for helping debug Emo. Please add to it if you can!
 
 # Table of Contents
 
@@ -106,6 +106,6 @@ See `tracing/doc.go` for more details.
 
 ### Other
 
-If you have any questions, or want us to analyze some weird kubo behaviour,
+If you have any questions, or want us to analyze some weird emo behaviour,
 just let us know, and be sure to include all the profiling information
 mentioned at the top.

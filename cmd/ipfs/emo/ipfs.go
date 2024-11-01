@@ -1,7 +1,7 @@
-package kubo
+package emo
 
 import (
-	commands "github.com/ipfs/kubo/core/commands"
+	commands "github.com/ipfs/emo/core/commands"
 
 	cmds "github.com/ipfs/go-ipfs-cmds"
 )

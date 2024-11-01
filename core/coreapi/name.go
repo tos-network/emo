@@ -9,13 +9,13 @@ import (
 	"github.com/ipfs/boxo/ipns"
 	keystore "github.com/ipfs/boxo/keystore"
 	"github.com/ipfs/boxo/namesys"
-	"github.com/ipfs/kubo/tracing"
+	"github.com/ipfs/emo/tracing"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/trace"
 
 	"github.com/ipfs/boxo/path"
-	coreiface "github.com/ipfs/kubo/core/coreiface"
-	caopts "github.com/ipfs/kubo/core/coreiface/options"
+	coreiface "github.com/ipfs/emo/core/coreiface"
+	caopts "github.com/ipfs/emo/core/coreiface/options"
 	ci "github.com/libp2p/go-libp2p/core/crypto"
 	peer "github.com/libp2p/go-libp2p/core/peer"
 )

@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/ipfs/kubo/core/coreiface/options"
+	"github.com/ipfs/emo/core/coreiface/options"
 	crypto_pb "github.com/libp2p/go-libp2p/core/crypto/pb"
 )
 

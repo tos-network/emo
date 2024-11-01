@@ -38,7 +38,7 @@
 //     default: `$PWD/traces.json`
 //
 // For example, if you run a local IPFS daemon, you can use the jaegertracing/all-in-one Docker image to run
-// a full Jaeger stack and configure Kubo to publish traces to it:
+// a full Jaeger stack and configure Emo to publish traces to it:
 //
 //	docker run -d --rm --name jaeger \
 //	 -e COLLECTOR_OTLP_ENABLED=true \

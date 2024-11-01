@@ -7,8 +7,8 @@ import (
 	"testing"
 
 	"github.com/blang/semver/v4"
-	"github.com/ipfs/kubo/test/cli/harness"
-	. "github.com/ipfs/kubo/test/cli/testutils"
+	"github.com/ipfs/emo/test/cli/harness"
+	. "github.com/ipfs/emo/test/cli/testutils"
 	"github.com/stretchr/testify/assert"
 	gomod "golang.org/x/mod/module"
 )
@@ -49,7 +49,7 @@ func TestIPFSVersionAll(t *testing.T) {
 	node := harness.NewT(t).NewNode()
 	res := node.IPFS("version", "--all").Stdout.String()
 	res = strings.TrimSpace(res)
-	assert.Contains(t, res, "Kubo version")
+	assert.Contains(t, res, "Emo version")
 	assert.Contains(t, res, "Repo version")
 	assert.Contains(t, res, "System version")
 	assert.Contains(t, res, "Golang version")
@@ -62,7 +62,7 @@ func TestIPFSVersionDeps(t *testing.T) {
 	res = strings.TrimSpace(res)
 	lines := SplitLines(res)
 
-	assert.Equal(t, "github.com/ipfs/kubo@(devel)", lines[0])
+	assert.Equal(t, "github.com/ipfs/emo@(devel)", lines[0])
 
 	for _, depLine := range lines[1:] {
 		split := strings.Split(depLine, " => ")

@@ -23,8 +23,8 @@ import (
 	mfs "github.com/ipfs/boxo/mfs"
 	cid "github.com/ipfs/go-cid"
 	logging "github.com/ipfs/go-log"
-	iface "github.com/ipfs/kubo/core/coreiface"
-	options "github.com/ipfs/kubo/core/coreiface/options"
+	iface "github.com/ipfs/emo/core/coreiface"
+	options "github.com/ipfs/emo/core/coreiface/options"
 )
 
 func init() {

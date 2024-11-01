@@ -5,8 +5,8 @@ import (
 	"time"
 
 	"github.com/ipfs/go-datastore"
-	"github.com/ipfs/kubo/config"
-	irouting "github.com/ipfs/kubo/routing"
+	"github.com/ipfs/emo/config"
+	irouting "github.com/ipfs/emo/routing"
 	dht "github.com/libp2p/go-libp2p-kad-dht"
 	dual "github.com/libp2p/go-libp2p-kad-dht/dual"
 	record "github.com/libp2p/go-libp2p-record"
@@ -48,8 +48,8 @@ func constructDefaultHTTPRouters(cfg *config.Config) ([]*routinghelpers.Parallel
 
 		routers = append(routers, &routinghelpers.ParallelRouter{
 			Router:                  r,
-			IgnoreError:             true,             // https://github.com/ipfs/kubo/pull/9475#discussion_r1042507387
-			Timeout:                 15 * time.Second, // 5x server value from https://github.com/ipfs/kubo/pull/9475#discussion_r1042428529
+			IgnoreError:             true,             // https://github.com/ipfs/emo/pull/9475#discussion_r1042507387
+			Timeout:                 15 * time.Second, // 5x server value from https://github.com/ipfs/emo/pull/9475#discussion_r1042428529
 			DoNotWaitForSearchValue: true,
 			ExecuteAfter:            0,
 		})

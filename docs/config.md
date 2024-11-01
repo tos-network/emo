@@ -1,13 +1,13 @@
-# The Kubo config file
+# The Emo config file
 
-The Kubo (go-ipfs) config file is a JSON document located at `$IPFS_PATH/config`. It
+The Emo (go-ipfs) config file is a JSON document located at `$IPFS_PATH/config`. It
 is read once at node instantiation, either for an offline command, or when
 starting the daemon. Commands that execute on a running daemon do not read the
 config file at runtime.
 
 # Table of Contents
 
-- [The Kubo config file](#the-kubo-config-file)
+- [The Emo config file](#the-emo-config-file)
 - [Table of Contents](#table-of-contents)
   - [`Addresses`](#addresses)
     - [`Addresses.API`](#addressesapi)
@@ -211,7 +211,7 @@ Contains information about various listener addresses to be used by this node.
 ### `Addresses.API`
 
 [Multiaddr][multiaddr] or array of multiaddrs describing the address to serve
-the local [Kubo RPC API](https://docs.ipfs.tech/reference/kubo/rpc/) (`/api/v0`).
+the local [Emo RPC API](https://docs.ipfs.tech/reference/emo/rpc/) (`/api/v0`).
 
 Supported Transports:
 
@@ -299,7 +299,7 @@ Type: `array[string]` ([multiaddrs][multiaddr])
 
 ## `API`
 
-Contains information used by the [Kubo RPC API](https://docs.ipfs.tech/reference/kubo/rpc/).
+Contains information used by the [Emo RPC API](https://docs.ipfs.tech/reference/emo/rpc/).
 
 ### `API.HTTPHeaders`
 
@@ -319,7 +319,7 @@ Type: `object[string -> array[string]]` (header names -> array of header values)
 ### `API.Authorizations`
 
 The `API.Authorizations` field defines user-based access restrictions for the
-[Kubo RPC API](https://docs.ipfs.tech/reference/kubo/rpc/), which is located at
+[Emo RPC API](https://docs.ipfs.tech/reference/emo/rpc/), which is located at
 `Addresses.API` under `/api/v0` paths.
 
 By default, the RPC API is accessible without restrictions as it is only
@@ -411,15 +411,15 @@ field can take one of two values:
 * `enabled` - Enable the V1+V2 service (unless the node determines that it,
   itself, isn't reachable by the public internet).
 * `legacy-v1` - Same as `enabled` but only V1 service is enabled. Used for testing
-  during as few releases as we [transition to V2](https://github.com/ipfs/kubo/issues/10091), will be removed in the future.
+  during as few releases as we [transition to V2](https://github.com/ipfs/emo/issues/10091), will be removed in the future.
 * `disabled` - Disable the service.
 
 Additional modes may be added in the future.
 
 > [!IMPORTANT]
-> We are in the progress of [rolling out AutoNAT V2](https://github.com/ipfs/kubo/issues/10091).
-> Right now, by default, a publicly dialable Kubo provides both V1 and V2 service to other peers,
-> but only V1 is used by Kubo as a client. In a future release we will remove V1 and switch client to use V2.
+> We are in the progress of [rolling out AutoNAT V2](https://github.com/ipfs/emo/issues/10091).
+> Right now, by default, a publicly dialable Emo provides both V1 and V2 service to other peers,
+> but only V1 is used by Emo as a client. In a future release we will remove V1 and switch client to use V2.
 
 Default: `enabled`
 
@@ -428,7 +428,7 @@ Type: `optionalString`
 ### `AutoNAT.Throttle`
 
 When set, this option configures the AutoNAT services throttling behavior. By
-default, Kubo will rate-limit the number of NAT checks performed for other
+default, Emo will rate-limit the number of NAT checks performed for other
 nodes to 30 per minute, and 3 per peer.
 
 ### `AutoNAT.Throttle.GlobalLimit`
@@ -459,10 +459,10 @@ Type: `duration` (when `0`/unset, the default value is used)
 
 > [!CAUTION]
 > This is an **EXPERIMENTAL** opt-in feature and should not be used in production yet.
-> Feel free to enable it and [report issues](https://github.com/ipfs/kubo/issues/new/choose) if you want to help with testing.
-> Track progress in [kubo#10560](https://github.com/ipfs/kubo/issues/10560).
+> Feel free to enable it and [report issues](https://github.com/ipfs/emo/issues/new/choose) if you want to help with testing.
+> Track progress in [emo#10560](https://github.com/ipfs/emo/issues/10560).
 
-AutoTLS feature enables publicly reachable Kubo nodes (those dialable from the public
+AutoTLS feature enables publicly reachable Emo nodes (those dialable from the public
 internet) to automatically obtain a wildcard TLS certificate for a DNS name
 unique to their PeerID at `*.[PeerID].libp2p.direct`. This enables direct
 libp2p connections and retrieval of IPFS content from browsers [Secure Context](https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts)
@@ -489,18 +489,18 @@ Type: `object`
 
 > [!CAUTION]
 > This is an **EXPERIMENTAL** opt-in feature and should not be used in production yet.
-> Feel free to enable it and [report issues](https://github.com/ipfs/kubo/issues/new/choose) if you want to help with testing.
-> Track progress in [kubo#10560](https://github.com/ipfs/kubo/issues/10560).
+> Feel free to enable it and [report issues](https://github.com/ipfs/emo/issues/new/choose) if you want to help with testing.
+> Track progress in [emo#10560](https://github.com/ipfs/emo/issues/10560).
 
 Enables AutoTLS feature to get DNS+TLS for [libp2p Secure WebSocket](https://github.com/libp2p/specs/blob/master/websockets/README.md) listeners defined in [`Addresses.Swarm`](#addressesswarm), such as `/ip4/0.0.0.0/tcp/4002/tls/sni/*.libp2p.direct/ws` and `/ip6/::/tcp/4002/tls/sni/*.libp2p.direct/ws`.
 
 If `.../tls/sni/*.libp2p.direct/ws` [multiaddr] is present in [`Addresses.Swarm`](#addressesswarm)
 with SNI segment ending with [`AutoTLS.DomainSuffix`](#autotlsdomainsuffix),
-Kubo will obtain and set up a trusted PKI TLS certificate for it, making it diallable from web browser's [Secure Contexts](https://w3c.github.io/webappsec-secure-contexts/).
+Emo will obtain and set up a trusted PKI TLS certificate for it, making it diallable from web browser's [Secure Contexts](https://w3c.github.io/webappsec-secure-contexts/).
 
 > [!IMPORTANT]
 > Caveats:
-> - Requires your Kubo node to be publicly diallable.
+> - Requires your Emo node to be publicly diallable.
 >   - If you want to test this with a node that is behind a NAT and uses manual port forwarding or UPnP (`Swarm.DisableNatPortMap=false`),
 >     add catch-all `/ip4/0.0.0.0/tcp/4002/tls/sni/*.libp2p.direct/ws` and `/ip6/::/tcp/4002/tls/sni/*.libp2p.direct/ws` to [`Addresses.Swarm`](#addressesswarm)
 >     and **wait 5-15 minutes** for libp2p node to set up and learn about own public addresses via [AutoNAT](#autonat).
@@ -535,8 +535,8 @@ Do not change this unless you self-host [p2p-forge] under own domain.
 
 > [!IMPORTANT]
 > The default endpoint performs [libp2p Peer ID Authentication over HTTP](https://github.com/libp2p/specs/blob/master/http/peer-id-auth.md)
-> (prooving ownership of PeerID), probes if your Kubo node can correctly answer to a [libp2p Identify](https://github.com/libp2p/specs/tree/master/identify) query.
-> This ensures only a correctly configured, publicly diallable Kubo can initiate [ACME DNS-01 challenge](https://letsencrypt.org/docs/challenge-types/#dns-01-challenge) for `peerid.libp2p.direct`.
+> (prooving ownership of PeerID), probes if your Emo node can correctly answer to a [libp2p Identify](https://github.com/libp2p/specs/tree/master/identify) query.
+> This ensures only a correctly configured, publicly diallable Emo can initiate [ACME DNS-01 challenge](https://letsencrypt.org/docs/challenge-types/#dns-01-challenge) for `peerid.libp2p.direct`.
 
 Default: `https://registration.libp2p.direct` (public good run by [Interplanetary Shipyard](https://ipshipyard.com))
 
@@ -640,7 +640,7 @@ where each datastore is represented by a json object. Datastores can wrap other
 datastores to provide extra functionality (eg metrics, logging, or caching).
 
 > [!NOTE]
-> For more information on possible values for this configuration option, see [`kubo/docs/datastores.md`](datastores.md)
+> For more information on possible values for this configuration option, see [`emo/docs/datastores.md`](datastores.md)
 
 Default:
 ```
@@ -697,13 +697,13 @@ in the [new mDNS implementation](https://github.com/libp2p/zeroconf#readme).
 
 ## `Experimental`
 
-Toggle and configure experimental features of Kubo. Experimental features are listed [here](./experimental-features.md).
+Toggle and configure experimental features of Emo. Experimental features are listed [here](./experimental-features.md).
 
 ## `Gateway`
 
 Options for the HTTP gateway.
 
-**NOTE:** support for `/api/v0` under the gateway path is now deprecated. It will be removed in future versions: https://github.com/ipfs/kubo/issues/10312.
+**NOTE:** support for `/api/v0` under the gateway path is now deprecated. It will be removed in future versions: https://github.com/ipfs/emo/issues/10312.
 
 ### `Gateway.NoFetch`
 
@@ -737,7 +737,7 @@ Type: `flag`
 ### `Gateway.DisableHTMLErrors`
 
 An optional flag to disable the pretty HTML error pages of the gateway. Instead,
-a `text/plain` page will be returned with the raw error message from Kubo.
+a `text/plain` page will be returned with the raw error message from Emo.
 
 It is useful for whitelabel or middleware deployments that wish to avoid
 `text/html` responses with IPFS branding and links on error pages in browsers.
@@ -748,13 +748,13 @@ Type: `flag`
 
 ### `Gateway.ExposeRoutingAPI`
 
-An optional flag to expose Kubo `Routing` system on the gateway port
+An optional flag to expose Emo `Routing` system on the gateway port
 as an [HTTP `/routing/v1`](https://specs.ipfs.tech/routing/http-routing-v1/) endpoint on `127.0.0.1`.
 Use reverse proxy to expose it on a different hostname.
 
-This endpoint can be used by other Kubo instances, as illustrated in
-[`delegated_routing_v1_http_proxy_test.go`](https://github.com/ipfs/kubo/blob/master/test/cli/delegated_routing_v1_http_proxy_test.go).
-Kubo will filter out routing results which are not actionable, for example, all
+This endpoint can be used by other Emo instances, as illustrated in
+[`delegated_routing_v1_http_proxy_test.go`](https://github.com/ipfs/emo/blob/master/test/cli/delegated_routing_v1_http_proxy_test.go).
+Emo will filter out routing results which are not actionable, for example, all
 graphsync providers will be skipped. If you need a generic pass-through, see
 standalone router implementation named [someguy](https://github.com/ipfs/someguy).
 
@@ -780,11 +780,11 @@ Type: `string` (url)
 
 ### `Gateway.FastDirIndexThreshold`
 
-**REMOVED**: this option is [no longer necessary](https://github.com/ipfs/kubo/pull/9481). Ignored since  [Kubo 0.18](https://github.com/ipfs/kubo/blob/master/docs/changelogs/v0.18.md).
+**REMOVED**: this option is [no longer necessary](https://github.com/ipfs/emo/pull/9481). Ignored since  [Emo 0.18](https://github.com/ipfs/emo/blob/master/docs/changelogs/v0.18.md).
 
 ### `Gateway.Writable`
 
-**REMOVED**: this option no longer available as of [Kubo 0.20](https://github.com/ipfs/kubo/blob/master/docs/changelogs/v0.20.md).
+**REMOVED**: this option no longer available as of [Emo 0.20](https://github.com/ipfs/emo/blob/master/docs/changelogs/v0.20.md).
 
 We are working on developing a modern replacement. To support our efforts, please leave a comment describing your use case in [ipfs/specs#375](https://github.com/ipfs/specs/issues/375).
 
@@ -798,7 +798,7 @@ We are working on developing a modern replacement. To support our efforts, pleas
 > This configuration is **NOT** for HTTP Client, it is for HTTP Server – use this ONLY if you want to run your own IPFS gateway.
 
 `PublicGateways` is a configuration map used for dictionary for customizing gateway behavior
-on specified hostnames that point at your Kubo instance.
+on specified hostnames that point at your Emo instance.
 
 It is useful when you want to run [Path gateway](https://specs.ipfs.tech/http-gateways/path-gateway/) on `example.com/ipfs/cid`,
 and [Subdomain gateway](https://specs.ipfs.tech/http-gateways/subdomain-gateway/) on `cid.ipfs.example.org`, 
@@ -964,7 +964,7 @@ Below is a list of the most common public gateway setups.
 
      `http://dweb.link/ipfs/{cid}` → `http://{cid}.ipfs.dweb.link`
 
-   - **X-Forwarded-Proto:** if you run Kubo behind a reverse proxy that provides TLS, make it add a `X-Forwarded-Proto: https` HTTP header to ensure users are redirected to `https://`, not `http://`. It will also ensure DNSLink names are inlined to fit in a single DNS label, so they work fine with a wildcart TLS cert ([details](https://github.com/ipfs/in-web-browsers/issues/169)). The NGINX directive is `proxy_set_header X-Forwarded-Proto "https";`.:
+   - **X-Forwarded-Proto:** if you run Emo behind a reverse proxy that provides TLS, make it add a `X-Forwarded-Proto: https` HTTP header to ensure users are redirected to `https://`, not `http://`. It will also ensure DNSLink names are inlined to fit in a single DNS label, so they work fine with a wildcart TLS cert ([details](https://github.com/ipfs/in-web-browsers/issues/169)). The NGINX directive is `proxy_set_header X-Forwarded-Proto "https";`.:
 
      `http://dweb.link/ipfs/{cid}` → `https://{cid}.ipfs.dweb.link`
 
@@ -1026,7 +1026,7 @@ Type: `string` (base64 encoded)
 
 ## `Internal`
 
-This section includes internal knobs for various subsystems to allow advanced users with big or private infrastructures to fine-tune some behaviors without the need to recompile Kubo.
+This section includes internal knobs for various subsystems to allow advanced users with big or private infrastructures to fine-tune some behaviors without the need to recompile Emo.
 
 **Be aware that making informed change here requires in-depth knowledge and most users should leave these untouched. All knobs listed here are subject to breaking changes between versions.**
 
@@ -1154,7 +1154,7 @@ Maximum duration for which entries are valid in the name system cache. Applied
 to everything under `/ipns/` namespace, allows you to cap
 the [Time-To-Live (TTL)](https://specs.ipfs.tech/ipns/ipns-record/#ttl-uint64) of
 [IPNS Records](https://specs.ipfs.tech/ipns/ipns-record/)
-AND also DNSLink TXT records (when DoH-specific [`DNS.MaxCacheTTL`](https://github.com/ipfs/kubo/blob/master/docs/config.md#dnsmaxcachettl)
+AND also DNSLink TXT records (when DoH-specific [`DNS.MaxCacheTTL`](https://github.com/ipfs/emo/blob/master/docs/config.md#dnsmaxcachettl)
 is not set to a lower value).
 
 When `Ipns.MaxCacheTTL` is set, it defines the upper bound limit of how long a
@@ -1320,7 +1320,7 @@ Type: `duration`
 
 ## `Pubsub`
 
-**DEPRECATED**: See [#9717](https://github.com/ipfs/kubo/issues/9717)
+**DEPRECATED**: See [#9717](https://github.com/ipfs/emo/issues/9717)
 
 Pubsub configures the `ipfs pubsub` subsystem. To use, it must be enabled by
 passing the `--enable-pubsub-experiment` flag to the daemon
@@ -1328,7 +1328,7 @@ or via the `Pubsub.Enabled` flag below.
 
 ### `Pubsub.Enabled`
 
-**DEPRECATED**: See [#9717](https://github.com/ipfs/kubo/issues/9717)
+**DEPRECATED**: See [#9717](https://github.com/ipfs/emo/issues/9717)
 
 Enables the pubsub system.
 
@@ -1338,7 +1338,7 @@ Type: `flag`
 
 ### `Pubsub.Router`
 
-**DEPRECATED**: See [#9717](https://github.com/ipfs/kubo/issues/9717)
+**DEPRECATED**: See [#9717](https://github.com/ipfs/emo/issues/9717)
 
 Sets the default router used by pubsub to route messages to peers. This can be one of:
 
@@ -1355,7 +1355,7 @@ Type: `string` (one of `"floodsub"`, `"gossipsub"`, or `""` (apply default))
 
 ### `Pubsub.DisableSigning`
 
-**DEPRECATED**: See [#9717](https://github.com/ipfs/kubo/issues/9717)
+**DEPRECATED**: See [#9717](https://github.com/ipfs/emo/issues/9717)
 
 Disables message signing and signature verification. Enable this option if
 you're operating in a completely trusted network.
@@ -1370,7 +1370,7 @@ Type: `bool`
 
 ### `Pubsub.SeenMessagesTTL`
 
-**DEPRECATED**: See [#9717](https://github.com/ipfs/kubo/issues/9717)
+**DEPRECATED**: See [#9717](https://github.com/ipfs/emo/issues/9717)
 
 Controls the time window within which duplicate messages, identified by Message
 ID, will be identified and won't be emitted again.
@@ -1391,7 +1391,7 @@ Type: `optionalDuration`
 
 ### `Pubsub.SeenMessagesStrategy`
 
-**DEPRECATED**: See [#9717](https://github.com/ipfs/kubo/issues/9717)
+**DEPRECATED**: See [#9717](https://github.com/ipfs/emo/issues/9717)
 
 Determines how the time-to-live (TTL) countdown for deduplicating Pubsub
 messages is calculated.
@@ -1416,7 +1416,7 @@ Type: `optionalString`
 
 ## `Peering`
 
-Configures the peering subsystem. The peering subsystem configures Kubo to
+Configures the peering subsystem. The peering subsystem configures Emo to
 connect to, remain connected to, and reconnect to a set of nodes. Nodes should
 use this subsystem to create "sticky" links between frequently useful peers to
 improve reliability.
@@ -1425,15 +1425,15 @@ Use-cases:
 
 * An IPFS gateway connected to an IPFS cluster should peer to ensure that the
   gateway can always fetch content from the cluster.
-* A dapp may peer embedded Kubo nodes with a set of pinning services or
+* A dapp may peer embedded Emo nodes with a set of pinning services or
   textile cafes/hubs.
 * A set of friends may peer to ensure that they can always fetch each other's
   content.
 
-When a node is added to the set of peered nodes, Kubo will:
+When a node is added to the set of peered nodes, Emo will:
 
 1. Protect connections to this node from the connection manager. That is,
-   Kubo will never automatically close the connection to this node and
+   Emo will never automatically close the connection to this node and
    connections to this node will not count towards the connection limit.
 2. Connect to this node on startup.
 3. Repeatedly try to reconnect to this node if the last connection dies or the
@@ -1626,7 +1626,7 @@ Type: `flag`
 
 Whether loopback addresses (e.g. 127.0.0.1) should not be ignored on the local LAN DHT.
 
-Most users do not need this setting. It can be useful during testing, when multiple Kubo nodes run on the same machine but some of them do not have `Discovery.MDNS.Enabled`.
+Most users do not need this setting. It can be useful during testing, when multiple Emo nodes run on the same machine but some of them do not have `Discovery.MDNS.Enabled`.
 
 Default: `false`
 
@@ -1806,10 +1806,10 @@ Type: `bool`
 
 Disable automatic NAT port forwarding (turn off [UPnP](https://en.wikipedia.org/wiki/Universal_Plug_and_Play)).
 
-When not disabled (default), Kubo asks NAT devices (e.g., routers), to open
-up an external port and forward it to the port Kubo is running on. When this
+When not disabled (default), Emo asks NAT devices (e.g., routers), to open
+up an external port and forward it to the port Emo is running on. When this
 works (i.e., when your router supports NAT port forwarding), it makes the local
-Kubo node accessible from the public internet.
+Emo node accessible from the public internet.
 
 Default: `false`
 
@@ -1820,7 +1820,7 @@ Type: `bool`
 Enable hole punching for NAT traversal
 when port forwarding is not possible.
 
-When enabled, Kubo will coordinate with the counterparty using
+When enabled, Emo will coordinate with the counterparty using
 a [relayed connection](https://github.com/libp2p/specs/blob/master/relay/circuit-v2.md),
 to [upgrade to a direct connection](https://github.com/libp2p/specs/blob/master/relay/DCUtR.md)
 through a NAT/firewall whenever possible.
@@ -1949,7 +1949,7 @@ Type: `optionalInteger`
 
 #### `Swarm.RelayService.MaxReservationsPerPeer`
 
-**REMOVED in kubo 0.32 due to [go-libp2p#2974](https://github.com/libp2p/go-libp2p/pull/2974)**
+**REMOVED in emo 0.32 due to [go-libp2p#2974](https://github.com/libp2p/go-libp2p/pull/2974)**
 
 #### `Swarm.RelayService.MaxReservationsPerIP`
 
@@ -1988,7 +1988,7 @@ Please use [`AutoNAT.ServiceMode`](#autonatservicemode).
 ### `Swarm.ConnMgr`
 
 The connection manager determines which and how many connections to keep and can
-be configured to keep. Kubo currently supports two connection managers:
+be configured to keep. Emo currently supports two connection managers:
 
 * none: never close idle connections.
 * basic: the default connection manager.
@@ -2065,7 +2065,7 @@ Type: `optionalDuration`
 
 ### `Swarm.ResourceMgr`
 
-Learn more about Kubo's usage of libp2p Network Resource Manager
+Learn more about Emo's usage of libp2p Network Resource Manager
 in the [dedicated resource management docs](./libp2p-resource-management.md).
 
 #### `Swarm.ResourceMgr.Enabled`
@@ -2142,7 +2142,7 @@ Listen Addresses:
 [Websocket](https://en.wikipedia.org/wiki/WebSocket) is a transport usually used
 to connect to non-browser-based IPFS nodes from browser-based js-ipfs nodes.
 
-While it's enabled by default for dialing, Kubo doesn't listen on this
+While it's enabled by default for dialing, Emo doesn't listen on this
 transport by default.
 
 Default: Enabled
@@ -2156,7 +2156,7 @@ Listen Addresses:
 #### `Swarm.Transports.Network.QUIC`
 
 [QUIC](https://en.wikipedia.org/wiki/QUIC) is the most widely used transport by
-Kubo nodes. It is a UDP-based transport with built-in encryption and
+Emo nodes. It is a UDP-based transport with built-in encryption and
 multiplexing. The primary benefits over TCP are:
 
 1. It takes 1 round trip to establish a connection (our TCP transport
@@ -2209,7 +2209,7 @@ this transport is really meant at agents that cannot do `TCP` or `QUIC` (like br
 
 WebTransport is a new transport protocol currently under development by the IETF and the W3C, and already implemented by Chrome.
 Conceptually, it’s like WebSocket run over QUIC instead of TCP. Most importantly, it allows browsers to establish (secure!) connections to WebTransport servers without the need for CA-signed certificates,
-thereby enabling any js-libp2p node running in a browser to connect to any kubo node, with zero manual configuration involved.
+thereby enabling any js-libp2p node running in a browser to connect to any emo node, with zero manual configuration involved.
 
 The previous alternative is websocket secure, which require installing a reverse proxy and TLS certificates manually.
 
@@ -2231,7 +2231,7 @@ certificates. This can be useful for browser nodes that do not yet support
 [WebTransport](https://blog.libp2p.io/2022-12-19-libp2p-webtransport/),
 which is still relatively new and has [known issues](https://github.com/libp2p/js-libp2p/issues/2572).
 
-Enabling this transport allows Kubo node to act on `/udp/4001/webrtc-direct`
+Enabling this transport allows Emo node to act on `/udp/4001/webrtc-direct`
 listeners defined in `Addresses.Swarm`, `Addresses.Announce` or
 `Addresses.AppendAnnounce`.
 
@@ -2260,9 +2260,9 @@ This does not concern all the QUIC transports which use QUIC's builtin encryptio
 
 Security transports are configured with the `priority` type.
 
-When establishing an _outbound_ connection, Kubo will try each security
+When establishing an _outbound_ connection, Emo will try each security
 transport in priority order (lower first), until it finds a protocol that the
-receiver supports. When establishing an _inbound_ connection, Kubo will let
+receiver supports. When establishing an _inbound_ connection, Emo will let
 the initiator choose the protocol, but will refuse to use any of the disabled
 transports.
 
@@ -2273,7 +2273,7 @@ No default priority will ever be less than 100. Lower values have precedence.
 #### `Swarm.Transports.Security.TLS`
 
 [TLS](https://github.com/libp2p/specs/tree/master/tls) (1.3) is the default
-security transport as of Kubo 0.5.0. It's also the most scrutinized and
+security transport as of Emo 0.5.0. It's also the most scrutinized and
 trusted security transport.
 
 Default: `100`
@@ -2312,7 +2312,7 @@ No default priority will ever be less than 100.
 
 ### `Swarm.Transports.Multiplexers.Yamux`
 
-Yamux is the default multiplexer used when communicating between Kubo nodes.
+Yamux is the default multiplexer used when communicating between Emo nodes.
 
 Default: `100`
 
@@ -2320,9 +2320,9 @@ Type: `priority`
 
 ### `Swarm.Transports.Multiplexers.Mplex`
 
-**REMOVED**: See https://github.com/ipfs/kubo/issues/9958
+**REMOVED**: See https://github.com/ipfs/emo/issues/9958
 
-Support for Mplex has been [removed from Kubo and go-libp2p](https://github.com/libp2p/specs/issues/553).
+Support for Mplex has been [removed from Emo and go-libp2p](https://github.com/libp2p/specs/issues/553).
 Please remove this option from your config.
 
 ## `DNS`
@@ -2450,7 +2450,7 @@ Type: `flag`
 
 ### `Version.SwarmCheckPercentThreshold`
 
-Control the percentage of `kubo/` peers running new version required to
+Control the percentage of `emo/` peers running new version required to
 trigger update warning.
 
 Default: `5`
@@ -2471,10 +2471,10 @@ documented in `ipfs config profile --help`.
 ### `server` profile
 
 Disables local [`Discovery.MDNS`](#discoverymdns), [turns off uPnP NAT port mapping](#swarmdisablenatportmap),  and blocks connections to
-IPv4 and IPv6 prefixes that are [private, local only, or unrouteable](https://github.com/ipfs/kubo/blob/b71cf0d15904bdef21fe2eee5f1118a274309a4d/config/profile.go#L24-L43).
+IPv4 and IPv6 prefixes that are [private, local only, or unrouteable](https://github.com/ipfs/emo/blob/b71cf0d15904bdef21fe2eee5f1118a274309a4d/config/profile.go#L24-L43).
 
 Recommended when running IPFS on machines with public IPv4 addresses (no NAT, no uPnP)
-at providers that interpret local IPFS discovery and traffic as netscan abuse ([example](https://github.com/ipfs/kubo/issues/10327)).
+at providers that interpret local IPFS discovery and traffic as netscan abuse ([example](https://github.com/ipfs/emo/issues/10327)).
 
 ### `randomports` profile
 
@@ -2583,7 +2583,7 @@ Reduces daemon overhead on the system by disabling optional swarm services.
 
 > [!NOTE]
 > This profile is provided for legacy reasons.
-> With modern Kubo setting the above should not be necessary.
+> With modern Emo setting the above should not be necessary.
 
 ### `announce-off` profile
 
@@ -2612,7 +2612,7 @@ Makes UnixFS import (`ipfs add`) produce modern CIDv1 with raw leaves, sha2-256 
 
 > [!NOTE]
 > This profile will become the new implicit default, provided for testing purposes.
-> Follow [kubo#4143](https://github.com/ipfs/kubo/issues/4143) for more details.
+> Follow [emo#4143](https://github.com/ipfs/emo/issues/4143) for more details.
 
 ## Types
 
@@ -2623,7 +2623,7 @@ This document refers to the standard JSON types (e.g., `null`, `string`,
 
 Flags allow enabling and disabling features. However, unlike simple booleans,
 they can also be `null` (or omitted) to indicate that the default value should
-be chosen. This makes it easier for Kubo to change the defaults in the
+be chosen. This makes it easier for Emo to change the defaults in the
 future unless the user _explicitly_ sets the flag to either `true` (enabled) or
 `false` (disabled). Flags have three possible states:
 
@@ -2659,7 +2659,7 @@ does (e.g, `"1d2h4m40.01s"`).
 Optional integers allow specifying some numerical value which has
 an implicit default when missing from the config file:
 
-- `null`/missing will apply the default value defined in Kubo sources (`.WithDefault(value)`)
+- `null`/missing will apply the default value defined in Emo sources (`.WithDefault(value)`)
 - an integer between `-2^63` and `2^63-1` (i.e. `-9223372036854775808` to `9223372036854775807`)
 
 ### `optionalBytes`
@@ -2667,7 +2667,7 @@ an implicit default when missing from the config file:
 Optional Bytes allow specifying some number of bytes which has
 an implicit default when missing from the config file:
 
-- `null`/missing (apply the default value defined in Kubo sources)
+- `null`/missing (apply the default value defined in Emo sources)
 - a string value indicating the number of bytes, including human readable representations:
   - [SI sizes](https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes) (metric units, powers of 1000), e.g. `1B`, `2kB`, `3MB`, `4GB`, `5TB`, …)
   - [IEC sizes](https://en.wikipedia.org/wiki/Binary_prefix#IEC_prefixes) (binary units, powers of 1024), e.g. `1B`, `2KiB`, `3MiB`, `4GiB`, `5TiB`, …)
@@ -2677,7 +2677,7 @@ an implicit default when missing from the config file:
 Optional strings allow specifying some string value which has
 an implicit default when missing from the config file:
 
-- `null`/missing will apply the default value defined in Kubo sources (`.WithDefault("value")`)
+- `null`/missing will apply the default value defined in Emo sources (`.WithDefault("value")`)
 - a string
 
 ### `optionalDuration`
@@ -2685,7 +2685,7 @@ an implicit default when missing from the config file:
 Optional durations allow specifying some duration value which has
 an implicit default when missing from the config file:
 
-- `null`/missing will apply the default value defined in Kubo sources (`.WithDefault("1h2m3s")`)
+- `null`/missing will apply the default value defined in Emo sources (`.WithDefault("1h2m3s")`)
 - a string with a valid [go duration](#duration)  (e.g, `"1d2h4m40.01s"`).
 
 ----

@@ -69,7 +69,7 @@ If they are not configured (or assigned their zero-valued), then default values 
 * `walMinSyncSeconds`: int: Sets the minimum duration between syncs of the WAL. (default: 0)
 
 > [!TIP]
-> Start using pebble with only default values and configure tuning items are needed for your needs. For a more complete description of these values, see: `https://pkg.go.dev/github.com/cockroachdb/pebble@vA.B.C#Options` (where `A.B.C` is pebble version from Kubo's `go.mod`).
+> Start using pebble with only default values and configure tuning items are needed for your needs. For a more complete description of these values, see: `https://pkg.go.dev/github.com/cockroachdb/pebble@vA.B.C#Options` (where `A.B.C` is pebble version from Emo's `go.mod`).
 
 ## badgerds
 
@@ -81,8 +81,8 @@ Uses [badger](https://github.com/dgraph-io/badger) as a key value store.
 > Do not use it for new deployments, unless you really, really know what you are doing.
 
 
-* `syncWrites`: Flush every write to disk before continuing. Setting this to false is safe as kubo will automatically flush writes to disk before and after performing critical operations like pinning. However, you can set this to true to be extra-safe (at the cost of a 2-3x slowdown when adding files).
-* `truncate`: Truncate the DB if a partially written sector is found (defaults to true). There is no good reason to set this to false unless you want to manually recover partially written (and unpinned) blocks if kubo crashes half-way through adding a file.
+* `syncWrites`: Flush every write to disk before continuing. Setting this to false is safe as emo will automatically flush writes to disk before and after performing critical operations like pinning. However, you can set this to true to be extra-safe (at the cost of a 2-3x slowdown when adding files).
+* `truncate`: Truncate the DB if a partially written sector is found (defaults to true). There is no good reason to set this to false unless you want to manually recover partially written (and unpinned) blocks if emo crashes half-way through adding a file.
 
 ```json
 {

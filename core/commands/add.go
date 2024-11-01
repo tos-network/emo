@@ -10,8 +10,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ipfs/kubo/config"
-	"github.com/ipfs/kubo/core/commands/cmdenv"
+	"github.com/ipfs/emo/config"
+	"github.com/ipfs/emo/core/commands/cmdenv"
 
 	"github.com/cheggaaa/pb"
 	"github.com/ipfs/boxo/files"
@@ -19,8 +19,8 @@ import (
 	"github.com/ipfs/boxo/path"
 	cmds "github.com/ipfs/go-ipfs-cmds"
 	ipld "github.com/ipfs/go-ipld-format"
-	coreiface "github.com/ipfs/kubo/core/coreiface"
-	"github.com/ipfs/kubo/core/coreiface/options"
+	coreiface "github.com/ipfs/emo/core/coreiface"
+	"github.com/ipfs/emo/core/coreiface/options"
 	mh "github.com/multiformats/go-multihash"
 )
 
@@ -158,8 +158,8 @@ Finally, a note on hash (CID) determinism and 'ipfs add' command.
 
 Almost all the flags provided by this command will change the final CID, and
 new flags may be added in the future. It is not guaranteed for the implicit
-defaults of 'ipfs add' to remain the same in future Kubo releases, or for other
-IPFS software to use the same import parameters as Kubo.
+defaults of 'ipfs add' to remain the same in future Emo releases, or for other
+IPFS software to use the same import parameters as Emo.
 
 If you need to back up or transport content-addressed data using a non-IPFS
 medium, CID can be preserved with CAR files.

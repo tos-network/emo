@@ -10,9 +10,9 @@ import (
 
 	"github.com/cockroachdb/pebble"
 	pebbleds "github.com/ipfs/go-ds-pebble"
-	"github.com/ipfs/kubo/plugin"
-	"github.com/ipfs/kubo/repo"
-	"github.com/ipfs/kubo/repo/fsrepo"
+	"github.com/ipfs/emo/plugin"
+	"github.com/ipfs/emo/repo"
+	"github.com/ipfs/emo/repo/fsrepo"
 )
 
 // Plugins is exported list of plugins that will be loaded.

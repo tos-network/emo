@@ -13,5 +13,5 @@ GOCC ?= go
 go-ipfs-source.tar.gz: distclean
 	GOCC=$(GOCC) bin/maketarball.sh $@
 
-kubo-source.tar.gz: distclean
+emo-source.tar.gz: distclean
 	GOCC=$(GOCC) bin/maketarball.sh $@

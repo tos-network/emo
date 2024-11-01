@@ -8,8 +8,8 @@ import (
 
 	"github.com/ipfs/boxo/path"
 	"github.com/ipfs/go-cid"
-	iface "github.com/ipfs/kubo/core/coreiface"
-	caopts "github.com/ipfs/kubo/core/coreiface/options"
+	iface "github.com/ipfs/emo/core/coreiface"
+	caopts "github.com/ipfs/emo/core/coreiface/options"
 	mc "github.com/multiformats/go-multicodec"
 	mh "github.com/multiformats/go-multihash"
 )

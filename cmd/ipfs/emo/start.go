@@ -1,5 +1,5 @@
-// cmd/ipfs/kubo implements the primary CLI binary for kubo
-package kubo
+// cmd/ipfs/emo implements the primary CLI binary for emo
+package emo
 
 import (
 	"bytes"
@@ -22,18 +22,18 @@ import (
 	"github.com/ipfs/go-ipfs-cmds/cli"
 	cmdhttp "github.com/ipfs/go-ipfs-cmds/http"
 	logging "github.com/ipfs/go-log"
-	ipfs "github.com/ipfs/kubo"
-	"github.com/ipfs/kubo/client/rpc/auth"
-	"github.com/ipfs/kubo/cmd/ipfs/util"
-	oldcmds "github.com/ipfs/kubo/commands"
-	config "github.com/ipfs/kubo/config"
-	"github.com/ipfs/kubo/core"
-	corecmds "github.com/ipfs/kubo/core/commands"
-	"github.com/ipfs/kubo/core/corehttp"
-	"github.com/ipfs/kubo/plugin/loader"
-	"github.com/ipfs/kubo/repo"
-	"github.com/ipfs/kubo/repo/fsrepo"
-	"github.com/ipfs/kubo/tracing"
+	ipfs "github.com/ipfs/emo"
+	"github.com/ipfs/emo/client/rpc/auth"
+	"github.com/ipfs/emo/cmd/ipfs/util"
+	oldcmds "github.com/ipfs/emo/commands"
+	config "github.com/ipfs/emo/config"
+	"github.com/ipfs/emo/core"
+	corecmds "github.com/ipfs/emo/core/commands"
+	"github.com/ipfs/emo/core/corehttp"
+	"github.com/ipfs/emo/plugin/loader"
+	"github.com/ipfs/emo/repo"
+	"github.com/ipfs/emo/repo/fsrepo"
+	"github.com/ipfs/emo/tracing"
 	ma "github.com/multiformats/go-multiaddr"
 	madns "github.com/multiformats/go-multiaddr-dns"
 	manet "github.com/multiformats/go-multiaddr/net"
@@ -103,7 +103,7 @@ func BuildDefaultEnv(ctx context.Context, req *cmds.Request) (cmds.Environment, 
 	return BuildEnv(nil)(ctx, req)
 }
 
-// BuildEnv creates an environment to be used with the kubo CLI. Note: the plugin preloader should only call functions
+// BuildEnv creates an environment to be used with the emo CLI. Note: the plugin preloader should only call functions
 // associated with preloaded plugins (i.e. Load).
 func BuildEnv(pl PluginPreloader) func(ctx context.Context, req *cmds.Request) (cmds.Environment, error) {
 	return func(ctx context.Context, req *cmds.Request) (cmds.Environment, error) {
@@ -170,7 +170,7 @@ func Start(buildEnv func(ctx context.Context, req *cmds.Request) (cmds.Environme
 	}()
 	otel.SetTracerProvider(tp)
 	otel.SetTextMapPropagator(autoprop.NewTextMapPropagator())
-	tracer = tp.Tracer("Kubo-cli")
+	tracer = tp.Tracer("Emo-cli")
 
 	stopFunc, err := profileIfEnabled()
 	if err != nil {

@@ -15,8 +15,8 @@ concurrency:
 
 jobs:
   go-test:
-    if: github.repository == 'ipfs/kubo' || github.event_name == 'workflow_dispatch'
-    runs-on: ${{ fromJSON(github.repository == 'ipfs/kubo' && '["self-hosted", "linux", "x64", "2xlarge"]' || '"ubuntu-latest"') }}
+    if: github.repository == 'ipfs/emo' || github.event_name == 'workflow_dispatch'
+    runs-on: ${{ fromJSON(github.repository == 'ipfs/emo' && '["self-hosted", "linux", "x64", "2xlarge"]' || '"ubuntu-latest"') }}
     timeout-minutes: 20
     env:
       TEST_DOCKER: 0
@@ -33,7 +33,7 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: 1.23.x
-      - name: Check out Kubo
+      - name: Check out Emo
         uses: actions/checkout@v4
       - name: Install missing tools
         run: sudo apt update && sudo apt install -y zsh
@@ -50,20 +50,20 @@ jobs:
         with:
           name: unittests
           files: coverage/unit_tests.coverprofile
-      - name: Test kubo-as-a-library example
+      - name: Test emo-as-a-library example
         run: |
-          # we want to first test with the kubo version in the go.mod file
+          # we want to first test with the emo version in the go.mod file
           go test -v ./...
 
-          # we also want to test the examples against the current version of kubo
+          # we also want to test the examples against the current version of emo
           # however, that version might be in a fork so we need to replace the dependency
 
           # backup the go.mod and go.sum files to restore them after we run the tests
           cp go.mod go.mod.bak
           cp go.sum go.sum.bak
 
-          # make sure the examples run against the current version of kubo
-          go mod edit -replace github.com/ipfs/kubo=./../../..
+          # make sure the examples run against the current version of emo
+          go mod edit -replace github.com/ipfs/emo=./../../..
           go mod tidy
 
           go test -v ./...
@@ -71,7 +71,7 @@ jobs:
           # restore the go.mod and go.sum files to their original state
           mv go.mod.bak go.mod
           mv go.sum.bak go.sum
-        working-directory: docs/examples/kubo-as-a-library
+        working-directory: docs/examples/emo-as-a-library
       - name: Create a proper JUnit XML report
         uses: ipdxco/gotest-json-to-junit-xml@v1
         with:

@@ -1,4 +1,4 @@
-package kubo
+package emo
 
 import (
 	"context"
@@ -12,16 +12,16 @@ import (
 
 	unixfs "github.com/ipfs/boxo/ipld/unixfs"
 	"github.com/ipfs/boxo/path"
-	assets "github.com/ipfs/kubo/assets"
-	oldcmds "github.com/ipfs/kubo/commands"
-	core "github.com/ipfs/kubo/core"
-	"github.com/ipfs/kubo/core/commands"
-	fsrepo "github.com/ipfs/kubo/repo/fsrepo"
+	assets "github.com/ipfs/emo/assets"
+	oldcmds "github.com/ipfs/emo/commands"
+	core "github.com/ipfs/emo/core"
+	"github.com/ipfs/emo/core/commands"
+	fsrepo "github.com/ipfs/emo/repo/fsrepo"
 
 	"github.com/ipfs/boxo/files"
 	cmds "github.com/ipfs/go-ipfs-cmds"
-	config "github.com/ipfs/kubo/config"
-	options "github.com/ipfs/kubo/core/coreiface/options"
+	config "github.com/ipfs/emo/config"
+	options "github.com/ipfs/emo/core/coreiface/options"
 )
 
 const (

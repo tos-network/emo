@@ -23,7 +23,7 @@ concurrency:
 
 jobs:
   codeql:
-    if: github.repository == 'ipfs/kubo' || github.event_name == 'workflow_dispatch'
+    if: github.repository == 'ipfs/emo' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 20
 

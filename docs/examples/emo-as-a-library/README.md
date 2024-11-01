@@ -1,6 +1,6 @@
-# Use Kubo (go-ipfs) as a library to spawn a node and add a file
+# Use Emo (go-ipfs) as a library to spawn a node and add a file
 
-> Note: if you are trying to customize or extend Kubo, you should read the [Customizing Kubo](../../customizing.md) doc
+> Note: if you are trying to customize or extend Emo, you should read the [Customizing Emo](../../customizing.md) doc
 
 By the end of this tutorial, you will learn how to:
 
@@ -26,11 +26,11 @@ In order to complete this tutorial, you will need:
 
 **Note:** Make sure you have [![](https://img.shields.io/badge/go-%3E%3D1.13.0-blue.svg?style=flat-square)](https://golang.org/dl/) installed.
 
-Download Kubo and jump into the example folder:
+Download Emo and jump into the example folder:
 
 ```console
-$ git clone https://github.com/ipfs/kubo.git
-$ cd kubo/docs/examples/kubo-as-a-library
+$ git clone https://github.com/ipfs/emo.git
+$ cd emo/docs/examples/emo-as-a-library
 ```
 
 ## Running the example as-is
@@ -45,7 +45,7 @@ You should see the following as output:
 
 ```
 -- Getting an IPFS node running --
-Spawning Kubo node on a temporary repo
+Spawning Emo node on a temporary repo
 IPFS node is running
 
 -- Adding and getting back files & directories --
@@ -58,7 +58,7 @@ Got directory back from IPFS (IPFS path: /ipfs/QmdQdu1fkaAUokmkfpWrmPHK78F9Eo9K2
 Fetching a file from the network with CID QmUaoioqU7bxezBQZkUcgcSyokatMY71sxsALxQmRRrHrj
 Wrote the file to ./example-folder/QmUaoioqU7bxezBQZkUcgcSyokatMY71sxsALxQmRRrHrj
 
-All done! You just finalized your first tutorial on how to use Kubo as a library
+All done! You just finalized your first tutorial on how to use Emo as a library
 ```
 
 ## Understanding the example
@@ -108,6 +108,6 @@ As a bonus, you can also find lines that show you how to spawn a node over your 
 - [Comment these lines](./main.go#L219-L223)
 - [Uncomment these lines](./main.go#L209-L216)
 
-## Voilá! You are now a Kubo hacker
+## Voilá! You are now a Emo hacker
 
-You've learned how to spawn a Kubo node using the Core API. There are many more [methods to experiment next](https://godoc.org/github.com/ipfs/interface-go-ipfs-core). Happy hacking!
+You've learned how to spawn a Emo node using the Core API. There are many more [methods to experiment next](https://godoc.org/github.com/ipfs/interface-go-ipfs-core). Happy hacking!

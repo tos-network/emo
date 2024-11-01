@@ -9,7 +9,7 @@ import (
 	"errors"
 	"plugin"
 
-	iplugin "github.com/ipfs/kubo/plugin"
+	iplugin "github.com/ipfs/emo/plugin"
 )
 
 func init() {

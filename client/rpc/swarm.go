@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	iface "github.com/ipfs/kubo/core/coreiface"
+	iface "github.com/ipfs/emo/core/coreiface"
 	"github.com/libp2p/go-libp2p/core/network"
 	"github.com/libp2p/go-libp2p/core/peer"
 	"github.com/libp2p/go-libp2p/core/protocol"

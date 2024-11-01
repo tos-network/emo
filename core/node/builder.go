@@ -7,13 +7,13 @@ import (
 
 	"go.uber.org/fx"
 
-	"github.com/ipfs/kubo/core/node/helpers"
-	"github.com/ipfs/kubo/core/node/libp2p"
-	"github.com/ipfs/kubo/repo"
+	"github.com/ipfs/emo/core/node/helpers"
+	"github.com/ipfs/emo/core/node/libp2p"
+	"github.com/ipfs/emo/repo"
 
 	ds "github.com/ipfs/go-datastore"
 	dsync "github.com/ipfs/go-datastore/sync"
-	cfg "github.com/ipfs/kubo/config"
+	cfg "github.com/ipfs/emo/config"
 	"github.com/libp2p/go-libp2p/core/crypto"
 	peer "github.com/libp2p/go-libp2p/core/peer"
 )

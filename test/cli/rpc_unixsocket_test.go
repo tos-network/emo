@@ -5,9 +5,9 @@ import (
 	"path"
 	"testing"
 
-	rpcapi "github.com/ipfs/kubo/client/rpc"
-	"github.com/ipfs/kubo/config"
-	"github.com/ipfs/kubo/test/cli/harness"
+	rpcapi "github.com/ipfs/emo/client/rpc"
+	"github.com/ipfs/emo/config"
+	"github.com/ipfs/emo/test/cli/harness"
 	"github.com/multiformats/go-multiaddr"
 	"github.com/stretchr/testify/require"
 )

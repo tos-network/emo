@@ -5,7 +5,7 @@ import (
 
 	"github.com/ipfs/boxo/path"
 
-	"github.com/ipfs/kubo/core/coreiface/options"
+	"github.com/ipfs/emo/core/coreiface/options"
 )
 
 // Pin holds information about pinned resource

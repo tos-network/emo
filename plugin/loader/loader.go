@@ -10,13 +10,13 @@ import (
 	"runtime"
 	"strings"
 
-	config "github.com/ipfs/kubo/config"
+	config "github.com/ipfs/emo/config"
 	"github.com/ipld/go-ipld-prime/multicodec"
 
-	"github.com/ipfs/kubo/core"
-	"github.com/ipfs/kubo/core/coreapi"
-	plugin "github.com/ipfs/kubo/plugin"
-	fsrepo "github.com/ipfs/kubo/repo/fsrepo"
+	"github.com/ipfs/emo/core"
+	"github.com/ipfs/emo/core/coreapi"
+	plugin "github.com/ipfs/emo/plugin"
+	fsrepo "github.com/ipfs/emo/repo/fsrepo"
 
 	logging "github.com/ipfs/go-log"
 	opentracing "github.com/opentracing/opentracing-go"

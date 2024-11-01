@@ -1,14 +1,14 @@
-module github.com/ipfs/kubo/examples/kubo-as-a-library
+module github.com/ipfs/emo/examples/emo-as-a-library
 
 go 1.23
 
-// Used to keep this in sync with the current version of kubo. You should remove
+// Used to keep this in sync with the current version of emo. You should remove
 // this if you copy this example.
-replace github.com/ipfs/kubo => ./../../..
+replace github.com/ipfs/emo => ./../../..
 
 require (
 	github.com/ipfs/boxo v0.24.2
-	github.com/ipfs/kubo v0.0.0-00010101000000-000000000000
+	github.com/ipfs/emo v0.0.0-00010101000000-000000000000
 	github.com/libp2p/go-libp2p v0.37.0
 	github.com/multiformats/go-multiaddr v0.13.0
 )

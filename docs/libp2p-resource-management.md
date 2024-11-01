@@ -2,7 +2,7 @@
 # libp2p Network Resource Manager <small>(`Swarm.ResourceMgr`)</small>
 
 ## Purpose
-The purpose of this document is to provide more information about the [libp2p Network Resource Manager](https://github.com/libp2p/go-libp2p/tree/master/p2p/host/resource-manager#readme) and how it's integrated into Kubo so that Kubo users can understand and configure it appropriately.
+The purpose of this document is to provide more information about the [libp2p Network Resource Manager](https://github.com/libp2p/go-libp2p/tree/master/p2p/host/resource-manager#readme) and how it's integrated into Emo so that Emo users can understand and configure it appropriately.
 
 ## 🙋 Help!  The resource manager is protecting my node but I want to understand more
 The resource manager is generally a *feature* to bound libp2p's resources, whether from bugs, unintentionally misbehaving peers, or intentional Denial of Service attacks.
@@ -37,7 +37,7 @@ See also the [`Swarm.ResourceMgr` config docs](./config.md#swarmresourcemgr).
 ### Approach
 libp2p's resource manager provides tremendous flexibility but also adds complexity.  There are these levels of limit configuration for resource management protection:
 
-1. "The user who does nothing" - In this case Kubo attempts to give some sane defaults discussed below
+1. "The user who does nothing" - In this case Emo attempts to give some sane defaults discussed below
    based on the amount of memory and file descriptors their system has.
    This should protect the node from many attacks.
 
@@ -45,7 +45,7 @@ libp2p's resource manager provides tremendous flexibility but also adds complexi
    without requiring users to wade into all the intricacies of libp2p's resource manager.
    The "knobs"/inputs are `Swarm.ResourceMgr.MaxMemory` and `Swarm.ResourceMgr.MaxFileDescriptors` as described below.
 
-3. "Power user" - They [specify override limits](#user-supplied-override-limits) and own their own destiny without Kubo getting in the way.
+3. "Power user" - They [specify override limits](#user-supplied-override-limits) and own their own destiny without Emo getting in the way.
 
 ### Computed Default Limits
 With the `Swarm.ResourceMgr.MaxMemory` and `Swarm.ResourceMgr.MaxFileDescriptors` inputs defined,
@@ -74,13 +74,13 @@ Within these scopes, limits are set on:
 Limits are set based on the `Swarm.ResourceMgr.MaxMemory` and `Swarm.ResourceMgr.MaxFileDescriptors` inputs above.
 
 There are also some special cases where minimum values are enforced.
-For example, Kubo maintainers have found in practice that it's a footgun to have too low of a value for `System.ConnsInbound` and a default minimum is used. (See [core/node/libp2p/rcmgr_defaults.go](https://github.com/ipfs/kubo/blob/master/core/node/libp2p/rcmgr_defaults.go) for specifics.)
+For example, Emo maintainers have found in practice that it's a footgun to have too low of a value for `System.ConnsInbound` and a default minimum is used. (See [core/node/libp2p/rcmgr_defaults.go](https://github.com/ipfs/emo/blob/master/core/node/libp2p/rcmgr_defaults.go) for specifics.)
 
 We trust this node to behave properly and thus don't limit *outbound* connection/stream limits.
 We apply any limits that libp2p has for its protocols/services
 since we assume libp2p knows best here.
 
-Source: [core/node/libp2p/rcmgr_defaults.go](https://github.com/ipfs/kubo/blob/master/core/node/libp2p/rcmgr_defaults.go)
+Source: [core/node/libp2p/rcmgr_defaults.go](https://github.com/ipfs/emo/blob/master/core/node/libp2p/rcmgr_defaults.go)
 
 ### User Supplied Override Limits
 A user who wants fine control over the limits used by the go-libp2p resource manager can specify overrides to the [computed default limits](#computed-default-limits).
@@ -106,7 +106,7 @@ This can be analyzed by viewing the limit and current usage with `ipfs swarm res
 The simplest way to identify all resources across all scopes that are close to exceeding their limit (>90% usage) is with a command like `ipfs swarm resources | egrep "9.\..%"` 
 
 Sources:
-* [kubo resource manager logging](https://github.com/ipfs/kubo/blob/master/core/node/libp2p/rcmgr_logging.go)
+* [emo resource manager logging](https://github.com/ipfs/emo/blob/master/core/node/libp2p/rcmgr_logging.go)
 * [libp2p resource manager messages](https://github.com/libp2p/go-libp2p/blob/master/p2p/host/resource-manager/scope.go)
 
 ### How does one see the Active Limits?
@@ -128,7 +128,7 @@ obtained via `ipfs swarm stats --help`
 ### How does the resource manager (ResourceMgr) relate to the connection manager (ConnMgr)?
 As discussed [here](https://github.com/libp2p/go-libp2p/tree/master/p2p/host/resource-manager#connmanager-vs-resource-manager)
 these are separate systems in go-libp2p.
-Kubo performs sanity checks to ensure that some of the hard limits of the ResourceMgr are sufficiently greater than the soft limits of the ConnMgr.
+Emo performs sanity checks to ensure that some of the hard limits of the ResourceMgr are sufficiently greater than the soft limits of the ConnMgr.
 
 The soft limit of `Swarm.ConnMgr.HighWater` needs to be less than the resource manager hard limit `System.ConnsInbound` for the configuration to make sense.
 This ensures the ConnMgr cleans up connections based on connection priorities before the hard limits of the ResourceMgr are applied.
@@ -140,18 +140,18 @@ To ensure the ConnMgr and ResourceMgr are congruent, the ResourceMgr [computed d
 1. `System.ConnsInbound` >= `max(Swarm.ConnMgr.HighWater * 2, DefaultResourceMgrMinInboundConns)` AND
 2. `System.StreamsInbound` is greater than any new/adjusted `Swarm.ResourceMgr.Limits.System.ConnsInbound` value so that there's enough streams per connection.
 
-Source: [core/node/libp2p/rcmgr_defaults.go](https://github.com/ipfs/kubo/blob/master/core/node/libp2p/rcmgr_defaults.go)
+Source: [core/node/libp2p/rcmgr_defaults.go](https://github.com/ipfs/emo/blob/master/core/node/libp2p/rcmgr_defaults.go)
 
 ### What are the "Application error 0x0 (remote) ... cannot reserve ..." messages?
-These are messages coming from old (pre go-libp2p 0.26) *remote* go-libp2p peers (likely another older Kubo node) with the resource manager enabled on why it failed to establish a connection.  
+These are messages coming from old (pre go-libp2p 0.26) *remote* go-libp2p peers (likely another older Emo node) with the resource manager enabled on why it failed to establish a connection.  
 
 This can be confusing, but these `Application error 0x0 (remote) ... cannot reserve ...` messages can occur even if your local node has the resource manager disabled.
 
 You can distinguish resource manager messages originating from your local node if they're from the `resourcemanager` / `libp2p/rcmgr_logging.go` logger
-or you see the string that is unique to Kubo (and not in go-libp2p): "Protected from exceeding resource limits".
+or you see the string that is unique to Emo (and not in go-libp2p): "Protected from exceeding resource limits".
 
-See more info in this go-libp2p issue ([#1928](https://github.com/libp2p/go-libp2p/issues/1928)).  go-libp2p 0.26 / Kubo 0.19 onwards this confusing error message was removed.
+See more info in this go-libp2p issue ([#1928](https://github.com/libp2p/go-libp2p/issues/1928)).  go-libp2p 0.26 / Emo 0.19 onwards this confusing error message was removed.
 
 
 ## History
-Kubo first [exposed this functionality in Kubo 0.13](./changelogs/v0.13.md#-libp2p-network-resource-manager-swarmresourcemgr), but it was disabled by default.  It was then enabled by default in [Kubo 0.17](./changelogs/v0.17.md#libp2p-resource-management-enabled-by-default).  Until that point, Kubo was vulnerable to unbound resource usage which could bring down nodes.  Introducing limits like this by default after the fact is tricky, which is why there have been changes and improvements afterwards.  The general trend since 0.17 with (0.18)[./changeloges/v0.18.md#improving-libp2p-resource-management-integration] and 0.19 has been to simplify and provide less options (and footguns!) for users and better documentation.
+Emo first [exposed this functionality in Emo 0.13](./changelogs/v0.13.md#-libp2p-network-resource-manager-swarmresourcemgr), but it was disabled by default.  It was then enabled by default in [Emo 0.17](./changelogs/v0.17.md#libp2p-resource-management-enabled-by-default).  Until that point, Emo was vulnerable to unbound resource usage which could bring down nodes.  Introducing limits like this by default after the fact is tricky, which is why there have been changes and improvements afterwards.  The general trend since 0.17 with (0.18)[./changeloges/v0.18.md#improving-libp2p-resource-management-integration] and 0.19 has been to simplify and provide less options (and footguns!) for users and better documentation.

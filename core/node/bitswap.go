@@ -8,15 +8,15 @@ import (
 	"github.com/ipfs/boxo/bitswap/network"
 	blockstore "github.com/ipfs/boxo/blockstore"
 	exchange "github.com/ipfs/boxo/exchange"
-	"github.com/ipfs/kubo/config"
-	irouting "github.com/ipfs/kubo/routing"
+	"github.com/ipfs/emo/config"
+	irouting "github.com/ipfs/emo/routing"
 	"github.com/libp2p/go-libp2p/core/host"
 	"go.uber.org/fx"
 
-	"github.com/ipfs/kubo/core/node/helpers"
+	"github.com/ipfs/emo/core/node/helpers"
 )
 
-// Docs: https://github.com/ipfs/kubo/blob/master/docs/config.md#internalbitswap
+// Docs: https://github.com/ipfs/emo/blob/master/docs/config.md#internalbitswap
 const (
 	DefaultEngineBlockstoreWorkerCount = 128
 	DefaultTaskWorkerCount             = 8

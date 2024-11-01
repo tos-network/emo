@@ -20,10 +20,10 @@ import (
 	ds "github.com/ipfs/go-datastore"
 	dssync "github.com/ipfs/go-datastore/sync"
 	ipld "github.com/ipfs/go-ipld-format"
-	coreiface "github.com/ipfs/kubo/core/coreiface"
-	options "github.com/ipfs/kubo/core/coreiface/options"
-	"github.com/ipfs/kubo/core/coreunix"
-	"github.com/ipfs/kubo/tracing"
+	coreiface "github.com/ipfs/emo/core/coreiface"
+	options "github.com/ipfs/emo/core/coreiface/options"
+	"github.com/ipfs/emo/core/coreunix"
+	"github.com/ipfs/emo/tracing"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/trace"
 )
@@ -71,7 +71,7 @@ func (api *UnixfsAPI) Add(ctx context.Context, files files.Node, opts ...options
 	//}
 
 	if settings.NoCopy && !(cfg.Experimental.FilestoreEnabled || cfg.Experimental.UrlstoreEnabled) {
-		return path.ImmutablePath{}, fmt.Errorf("either the filestore or the urlstore must be enabled to use nocopy, see: https://github.com/ipfs/kubo/blob/master/docs/experimental-features.md#ipfs-filestore")
+		return path.ImmutablePath{}, fmt.Errorf("either the filestore or the urlstore must be enabled to use nocopy, see: https://github.com/ipfs/emo/blob/master/docs/experimental-features.md#ipfs-filestore")
 	}
 
 	addblockstore := api.blockstore

@@ -11,9 +11,9 @@ import (
 	"github.com/libp2p/go-libp2p/core/routing"
 	routedhost "github.com/libp2p/go-libp2p/p2p/host/routed"
 
-	"github.com/ipfs/kubo/config"
-	"github.com/ipfs/kubo/core/node/helpers"
-	"github.com/ipfs/kubo/repo"
+	"github.com/ipfs/emo/config"
+	"github.com/ipfs/emo/core/node/helpers"
+	"github.com/ipfs/emo/repo"
 
 	"go.uber.org/fx"
 )

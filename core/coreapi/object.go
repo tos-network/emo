@@ -7,12 +7,12 @@ import (
 	"github.com/ipfs/boxo/ipld/merkledag/dagutils"
 	ft "github.com/ipfs/boxo/ipld/unixfs"
 	"github.com/ipfs/boxo/path"
-	coreiface "github.com/ipfs/kubo/core/coreiface"
-	caopts "github.com/ipfs/kubo/core/coreiface/options"
+	coreiface "github.com/ipfs/emo/core/coreiface"
+	caopts "github.com/ipfs/emo/core/coreiface/options"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/trace"
 
-	"github.com/ipfs/kubo/tracing"
+	"github.com/ipfs/emo/tracing"
 )
 
 type ObjectAPI CoreAPI

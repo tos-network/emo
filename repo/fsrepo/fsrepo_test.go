@@ -7,10 +7,10 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/ipfs/kubo/thirdparty/assert"
+	"github.com/ipfs/emo/thirdparty/assert"
 
 	datastore "github.com/ipfs/go-datastore"
-	config "github.com/ipfs/kubo/config"
+	config "github.com/ipfs/emo/config"
 )
 
 func TestInitIdempotence(t *testing.T) {

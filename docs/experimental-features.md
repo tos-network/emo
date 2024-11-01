@@ -1,14 +1,14 @@
-# Experimental features of Kubo
+# Experimental features of Emo
 
-This document contains a list of experimental features in Kubo.
+This document contains a list of experimental features in Emo.
 These features, commands, and APIs aren't mature, and you shouldn't rely on them.
 Once they reach maturity, there's going to be mention in the changelog and
 release posts. If they don't reach maturity, the same applies, and their code is
 removed.
 
-Subscribe to https://github.com/ipfs/kubo/issues/3397 to get updates.
+Subscribe to https://github.com/ipfs/emo/issues/3397 to get updates.
 
-When you add a new experimental feature to kubo or change an experimental
+When you add a new experimental feature to emo or change an experimental
 feature, you MUST please make a PR updating this document, and link the PR in
 the above issue.
 
@@ -413,7 +413,7 @@ Replaced by autosharding.
 
 The `Experimental.ShardingEnabled` config field is no longer used, please remove it from your configs.
 
-kubo now automatically shards when directory block is bigger than 256KB, ensuring every block is small enough to be exchanged with other peers
+emo now automatically shards when directory block is bigger than 256KB, ensuring every block is small enough to be exchanged with other peers
 
 ## IPNS pubsub
 
@@ -530,7 +530,7 @@ Removed, no plans to reintegrate either as experimental or stable feature.
 
 [Trustless Gateway over Libp2p](#http-gateway-over-libp2p) should be easier to use for unixfs usecases and support basic wildcard car streams for non unixfs.
 
-See https://github.com/ipfs/kubo/pull/9747 for more information.
+See https://github.com/ipfs/emo/pull/9747 for more information.
 
 ## Noise
 
@@ -538,7 +538,7 @@ See https://github.com/ipfs/kubo/pull/9747 for more information.
 
 Stable, enabled by default
 
-[Noise](https://github.com/libp2p/specs/tree/master/noise) libp2p transport based on the [Noise Protocol Framework](https://noiseprotocol.org/noise.html). While TLS remains the default transport in Kubo, Noise is easier to implement and is thus the "interop" transport between IPFS and libp2p implementations.
+[Noise](https://github.com/libp2p/specs/tree/master/noise) libp2p transport based on the [Noise Protocol Framework](https://noiseprotocol.org/noise.html). While TLS remains the default transport in Emo, Noise is easier to implement and is thus the "interop" transport between IPFS and libp2p implementations.
 
 ## Optimistic Provide
 
@@ -633,8 +633,8 @@ Notes:
     `application/vnd.ipld.car` (from [Trustless Gateway Specification](https://specs.ipfs.tech/http-gateways/trustless-gateway/),
     where data integrity can be verified).
   - Only serve data that is already local to the node (i.e. similar to a
-    [`Gateway.NoFetch`](https://github.com/ipfs/kubo/blob/master/docs/config.md#gatewaynofetch))
-- While Kubo currently mounts the gateway API at the root (i.e. `/`) of the
+    [`Gateway.NoFetch`](https://github.com/ipfs/emo/blob/master/docs/config.md#gatewaynofetch))
+- While Emo currently mounts the gateway API at the root (i.e. `/`) of the
   libp2p `/http/1.1` protocol, that is subject to change.
   - The way to reliably discover where a given HTTP protocol is mounted on a
     libp2p endpoint is via the `.well-known/libp2p` resource specified in the
@@ -656,8 +656,8 @@ ipfs config --json Experimental.GatewayOverLibp2p true
 - [ ] Needs more people to use and report on how well it works
 - [ ] Needs UX work for exposing non-recursive "HTTP transport" (NoFetch) over both libp2p and plain TCP (and sharing the configuration)
 - [ ] Needs a mechanism for HTTP handler to signal supported features ([IPIP-425](https://github.com/ipfs/specs/pull/425))
-- [ ] Needs an option for Kubo to detect peers that have it enabled and prefer HTTP transport before falling back to bitswap (and use CAR if peer supports dag-scope=entity from [IPIP-402](https://github.com/ipfs/specs/pull/402))
+- [ ] Needs an option for Emo to detect peers that have it enabled and prefer HTTP transport before falling back to bitswap (and use CAR if peer supports dag-scope=entity from [IPIP-402](https://github.com/ipfs/specs/pull/402))
 
 ## Accelerated DHT Client
 
-This feature now lives at [`Routing.AcceleratedDHTClient`](https://github.com/ipfs/kubo/blob/master/docs/config.md#routingaccelerateddhtclient).
+This feature now lives at [`Routing.AcceleratedDHTClient`](https://github.com/ipfs/emo/blob/master/docs/config.md#routingaccelerateddhtclient).

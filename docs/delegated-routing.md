@@ -2,19 +2,19 @@
 
 - Start Date: 2022-08-15
 - Related Issues:
-  - https://github.com/ipfs/kubo/issues/9188
-  - https://github.com/ipfs/kubo/issues/9079
-  - https://github.com/ipfs/kubo/pull/9877
+  - https://github.com/ipfs/emo/issues/9188
+  - https://github.com/ipfs/emo/issues/9079
+  - https://github.com/ipfs/emo/pull/9877
 
 ## Summary
 
 Previously we only used the Amino DHT for content routing and content
 providing.
 
-Kubo 0.14 introduced experimental support for [delegated routing](https://github.com/ipfs/kubo/pull/8997),
+Emo 0.14 introduced experimental support for [delegated routing](https://github.com/ipfs/emo/pull/8997),
 which then got changed and standardized as [Routing V1 HTTP API](https://specs.ipfs.tech/routing/http-routing-v1/).
 
-Kubo 0.23.0 release added support for [self-hosting Routing V1 HTTP API server](https://github.com/ipfs/kubo/blob/master/docs/changelogs/v0.23.md#self-hosting-routingv1-endpoint-for-delegated-routing-needs).
+Emo 0.23.0 release added support for [self-hosting Routing V1 HTTP API server](https://github.com/ipfs/emo/blob/master/docs/changelogs/v0.23.md#self-hosting-routingv1-endpoint-for-delegated-routing-needs).
 
 Now we need a better way to add different routers using different protocols
 like [Routing V1](https://specs.ipfs.tech/routing/http-routing-v1/) or Amino
@@ -38,7 +38,7 @@ The `Routing` configuration section will contain the following keys:
 
 #### Type
 
-`Type` will be still in use to avoid complexity for the user that only wants to use Kubo with the default behavior. We are going to add a new type, `custom`, that will use the new router systems. `none` type will deactivate **all** routers, default dht and delegated ones.
+`Type` will be still in use to avoid complexity for the user that only wants to use Emo with the default behavior. We are going to add a new type, `custom`, that will use the new router systems. `none` type will deactivate **all** routers, default dht and delegated ones.
 
 #### Routers
 
@@ -348,9 +348,9 @@ No new security implications or considerations were found.
 
 I got ideas from all of the following links to create this design document:
 
-- https://github.com/ipfs/kubo/issues/9079#issuecomment-1211288268
-- https://github.com/ipfs/kubo/issues/9157
-- https://github.com/ipfs/kubo/issues/9079#issuecomment-1205000253
+- https://github.com/ipfs/emo/issues/9079#issuecomment-1211288268
+- https://github.com/ipfs/emo/issues/9157
+- https://github.com/ipfs/emo/issues/9079#issuecomment-1205000253
 - https://www.notion.so/pl-strflt/Delegated-Routing-Thoughts-very-very-WIP-0543bc51b1bd4d63a061b0f28e195d38
 - https://gist.github.com/guseggert/effa027ff4cbadd7f67598efb6704d12
 

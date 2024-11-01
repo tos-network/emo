@@ -2,7 +2,7 @@ FROM --platform=${BUILDPLATFORM:-linux/amd64} golang:1.23 AS builder
 
 ARG TARGETOS TARGETARCH
 
-ENV SRC_DIR /kubo
+ENV SRC_DIR /emo
 
 # Download packages first so they can be cached.
 COPY go.mod go.sum $SRC_DIR/
@@ -47,7 +47,7 @@ RUN set -eux; \
 FROM busybox:stable-glibc
 
 # Get the ipfs binary, entrypoint script, and TLS CAs from the build container.
-ENV SRC_DIR /kubo
+ENV SRC_DIR /emo
 COPY --from=utilities /usr/sbin/gosu /sbin/gosu
 COPY --from=utilities /usr/bin/tini /sbin/tini
 COPY --from=utilities /bin/fusermount /usr/local/bin/fusermount

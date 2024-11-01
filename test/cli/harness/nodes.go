@@ -3,12 +3,12 @@ package harness
 import (
 	"sync"
 
-	. "github.com/ipfs/kubo/test/cli/testutils"
+	. "github.com/ipfs/emo/test/cli/testutils"
 	"github.com/multiformats/go-multiaddr"
 	"golang.org/x/sync/errgroup"
 )
 
-// Nodes is a collection of Kubo nodes along with operations on groups of nodes.
+// Nodes is a collection of Emo nodes along with operations on groups of nodes.
 type Nodes []*Node
 
 func (n Nodes) Init(args ...string) Nodes {

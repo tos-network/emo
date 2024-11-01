@@ -3,7 +3,7 @@
 # requested to review draft pull requests.
 
 # Default
-* @ipfs/kubo-maintainers 
+* @ipfs/emo-maintainers 
 
 # HTTP Gateway
 core/corehttp/  @lidel

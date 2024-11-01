@@ -16,11 +16,11 @@ concurrency:
 
 jobs:
   docker-build:
-    if: github.repository == 'ipfs/kubo' || github.event_name == 'workflow_dispatch'
+    if: github.repository == 'ipfs/emo' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
-      IMAGE_NAME: ipfs/kubo
+      IMAGE_NAME: ipfs/emo
       WIP_IMAGE_TAG: wip
     defaults:
       run:

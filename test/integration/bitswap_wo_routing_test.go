@@ -7,9 +7,9 @@ import (
 
 	blocks "github.com/ipfs/go-block-format"
 	"github.com/ipfs/go-cid"
-	"github.com/ipfs/kubo/core"
-	coremock "github.com/ipfs/kubo/core/mock"
-	"github.com/ipfs/kubo/core/node/libp2p"
+	"github.com/ipfs/emo/core"
+	coremock "github.com/ipfs/emo/core/mock"
+	"github.com/ipfs/emo/core/node/libp2p"
 	mocknet "github.com/libp2p/go-libp2p/p2p/net/mock"
 )
 

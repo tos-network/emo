@@ -1,9 +1,9 @@
-package kubo
+package emo
 
 import (
 	"net/http"
 
-	"github.com/ipfs/kubo/profile"
+	"github.com/ipfs/emo/profile"
 )
 
 func init() {

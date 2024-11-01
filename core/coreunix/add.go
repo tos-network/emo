@@ -25,9 +25,9 @@ import (
 	"github.com/ipfs/go-cid"
 	ipld "github.com/ipfs/go-ipld-format"
 	logging "github.com/ipfs/go-log"
-	coreiface "github.com/ipfs/kubo/core/coreiface"
+	coreiface "github.com/ipfs/emo/core/coreiface"
 
-	"github.com/ipfs/kubo/tracing"
+	"github.com/ipfs/emo/tracing"
 )
 
 var log = logging.Logger("coreunix")

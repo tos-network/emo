@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/ipfs/kubo/config"
+	"github.com/ipfs/emo/config"
 
 	"github.com/libp2p/go-libp2p"
 	"github.com/libp2p/go-libp2p/p2p/muxer/yamux"

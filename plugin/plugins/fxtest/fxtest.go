@@ -4,8 +4,8 @@ import (
 	"os"
 
 	logging "github.com/ipfs/go-log"
-	"github.com/ipfs/kubo/core"
-	"github.com/ipfs/kubo/plugin"
+	"github.com/ipfs/emo/core"
+	"github.com/ipfs/emo/plugin"
 	"go.uber.org/fx"
 )
 

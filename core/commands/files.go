@@ -14,9 +14,9 @@ import (
 	"time"
 
 	humanize "github.com/dustin/go-humanize"
-	"github.com/ipfs/kubo/config"
-	"github.com/ipfs/kubo/core"
-	"github.com/ipfs/kubo/core/commands/cmdenv"
+	"github.com/ipfs/emo/config"
+	"github.com/ipfs/emo/core"
+	"github.com/ipfs/emo/core/commands/cmdenv"
 
 	bservice "github.com/ipfs/boxo/blockservice"
 	offline "github.com/ipfs/boxo/exchange/offline"
@@ -29,7 +29,7 @@ import (
 	cmds "github.com/ipfs/go-ipfs-cmds"
 	ipld "github.com/ipfs/go-ipld-format"
 	logging "github.com/ipfs/go-log"
-	iface "github.com/ipfs/kubo/core/coreiface"
+	iface "github.com/ipfs/emo/core/coreiface"
 	mh "github.com/multiformats/go-multihash"
 )
 

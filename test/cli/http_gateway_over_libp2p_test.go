@@ -9,8 +9,8 @@ import (
 	"testing"
 
 	"github.com/ipfs/go-cid"
-	"github.com/ipfs/kubo/core/commands"
-	"github.com/ipfs/kubo/test/cli/harness"
+	"github.com/ipfs/emo/core/commands"
+	"github.com/ipfs/emo/test/cli/harness"
 	"github.com/libp2p/go-libp2p"
 	"github.com/libp2p/go-libp2p/core/peer"
 	libp2phttp "github.com/libp2p/go-libp2p/p2p/http"
@@ -81,7 +81,7 @@ func TestGatewayOverLibp2p(t *testing.T) {
 	})
 
 	t.Run("ServeBlock", func(t *testing.T) {
-		t.Run("UsingKuboProxy", func(t *testing.T) {
+		t.Run("UsingEmoProxy", func(t *testing.T) {
 			resp, err := http.Get(fmt.Sprintf("http://%s/ipfs/%s?format=raw", p2pProxyNodeHTTPListenAddr, cidDataOnGatewayNode))
 			require.NoError(t, err)
 			defer resp.Body.Close()

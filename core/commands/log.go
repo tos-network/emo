@@ -111,7 +111,7 @@ var logTailCmd = &cmds.Command{
 		ShortDescription: `
 Outputs event log messages (not other log messages) as they are generated.
 
-Currently broken. Follow https://github.com/ipfs/kubo/issues/9245 for updates.
+Currently broken. Follow https://github.com/ipfs/emo/issues/9245 for updates.
 `,
 	},
 

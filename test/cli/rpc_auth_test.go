@@ -4,14 +4,14 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/ipfs/kubo/client/rpc/auth"
-	"github.com/ipfs/kubo/config"
-	"github.com/ipfs/kubo/test/cli/harness"
+	"github.com/ipfs/emo/client/rpc/auth"
+	"github.com/ipfs/emo/config"
+	"github.com/ipfs/emo/test/cli/harness"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
-const rpcDeniedMsg = "Kubo RPC Access Denied: Please provide a valid authorization token as defined in the API.Authorizations configuration."
+const rpcDeniedMsg = "Emo RPC Access Denied: Please provide a valid authorization token as defined in the API.Authorizations configuration."
 
 func TestRPCAuth(t *testing.T) {
 	t.Parallel()

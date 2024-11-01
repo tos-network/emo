@@ -1,6 +1,6 @@
 package corehttp
 
-// WebUI version confirmed to work with this Kubo version
+// WebUI version confirmed to work with this Emo version
 const WebUIPath = "/ipfs/bafybeid4uxz7klxcu3ffsnmn64r7ihvysamlj4ohl5h2orjsffuegcpaeq" // v4.3.3
 
 // WebUIPaths is a list of all past webUI paths.

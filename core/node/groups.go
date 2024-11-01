@@ -13,9 +13,9 @@ import (
 	uio "github.com/ipfs/boxo/ipld/unixfs/io"
 	util "github.com/ipfs/boxo/util"
 	"github.com/ipfs/go-log"
-	"github.com/ipfs/kubo/config"
-	"github.com/ipfs/kubo/core/node/libp2p"
-	"github.com/ipfs/kubo/p2p"
+	"github.com/ipfs/emo/config"
+	"github.com/ipfs/emo/core/node/libp2p"
+	"github.com/ipfs/emo/p2p"
 	pubsub "github.com/libp2p/go-libp2p-pubsub"
 	"github.com/libp2p/go-libp2p-pubsub/timecache"
 	"github.com/libp2p/go-libp2p/core/peer"
@@ -139,7 +139,7 @@ func LibP2P(bcfg *BuildCfg, cfg *config.Config, userResourceOverrides rcmgr.Part
 			}
 		}
 		if !wssWildcardPresent {
-			logger.Fatal(fmt.Sprintf("Invalid configuration: AutoTLS.Enabled=true requires a catch-all Addresses.Swarm listener ending with %q to be present, see https://github.com/ipfs/kubo/blob/master/docs/config.md#autotls", wssWildcard))
+			logger.Fatal(fmt.Sprintf("Invalid configuration: AutoTLS.Enabled=true requires a catch-all Addresses.Swarm listener ending with %q to be present, see https://github.com/ipfs/emo/blob/master/docs/config.md#autotls", wssWildcard))
 		}
 	}
 

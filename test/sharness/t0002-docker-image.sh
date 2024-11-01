@@ -27,7 +27,7 @@ TEST_TRASH_DIR=$(pwd)
 TEST_SCRIPTS_DIR=$(dirname "$TEST_TRASH_DIR")
 TEST_TESTS_DIR=$(dirname "$TEST_SCRIPTS_DIR")
 APP_ROOT_DIR=$(dirname "$TEST_TESTS_DIR")
-IMAGE_TAG=kubo_test
+IMAGE_TAG=emo_test
 
 test_expect_success "docker image build succeeds" '
   docker_build "$IMAGE_TAG" "$TEST_TESTS_DIR/../Dockerfile" "$APP_ROOT_DIR" ||

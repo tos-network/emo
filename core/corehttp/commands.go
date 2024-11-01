@@ -11,11 +11,11 @@ import (
 
 	cmds "github.com/ipfs/go-ipfs-cmds"
 	cmdsHttp "github.com/ipfs/go-ipfs-cmds/http"
-	version "github.com/ipfs/kubo"
-	oldcmds "github.com/ipfs/kubo/commands"
-	config "github.com/ipfs/kubo/config"
-	"github.com/ipfs/kubo/core"
-	corecommands "github.com/ipfs/kubo/core/commands"
+	version "github.com/ipfs/emo"
+	oldcmds "github.com/ipfs/emo/commands"
+	config "github.com/ipfs/emo/config"
+	"github.com/ipfs/emo/core"
+	corecommands "github.com/ipfs/emo/core/commands"
 	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
 )
 
@@ -84,7 +84,7 @@ func addHeadersFromConfig(c *cmdsHttp.ServerConfig, nc *config.Config) {
 			c.Headers[h] = v
 		}
 	}
-	c.Headers["Server"] = []string{"kubo/" + version.CurrentVersionNumber}
+	c.Headers["Server"] = []string{"emo/" + version.CurrentVersionNumber}
 }
 
 func addCORSDefaults(c *cmdsHttp.ServerConfig) {
@@ -193,7 +193,7 @@ func withAuthSecrets(authorizations map[string]rpcAuthScopeWithUser, next http.H
 			}
 		}
 
-		http.Error(w, "Kubo RPC Access Denied: Please provide a valid authorization token as defined in the API.Authorizations configuration.", http.StatusForbidden)
+		http.Error(w, "Emo RPC Access Denied: Please provide a valid authorization token as defined in the API.Authorizations configuration.", http.StatusForbidden)
 	})
 }
 
@@ -203,7 +203,7 @@ func CommandsOption(cctx oldcmds.Context) ServeOption {
 	return commandsOption(cctx, corecommands.Root)
 }
 
-// CheckVersionOption returns a ServeOption that checks whether the client ipfs version matches. Does nothing when the user agent string does not contain `/kubo/` or `/go-ipfs/`
+// CheckVersionOption returns a ServeOption that checks whether the client ipfs version matches. Does nothing when the user agent string does not contain `/emo/` or `/go-ipfs/`
 func CheckVersionOption() ServeOption {
 	daemonVersion := version.ApiVersion
 
@@ -217,8 +217,8 @@ func CheckVersionOption() ServeOption {
 				// backwards compatibility to previous version check
 				if len(pth) >= 2 && pth[1] != "version" {
 					clientVersion := r.UserAgent()
-					// skips check if client is not kubo (go-ipfs)
-					if (strings.Contains(clientVersion, "/go-ipfs/") || strings.Contains(clientVersion, "/kubo/")) && daemonVersion != clientVersion {
+					// skips check if client is not emo (go-ipfs)
+					if (strings.Contains(clientVersion, "/go-ipfs/") || strings.Contains(clientVersion, "/emo/")) && daemonVersion != clientVersion {
 						http.Error(w, fmt.Sprintf("%s (%s != %s)", errAPIVersionMismatch, daemonVersion, clientVersion), http.StatusBadRequest)
 						return
 					}

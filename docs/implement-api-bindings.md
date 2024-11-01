@@ -1,7 +1,7 @@
 # IPFS API Implementation Doc
 
 This short document aims to give a quick guide to anyone implementing API
-bindings for IPFS implementations-- in particular kubo.
+bindings for IPFS implementations-- in particular emo.
 
 Sections:
 - IPFS Types
@@ -28,7 +28,7 @@ handled for you by writes to the request body blocking.)
 ## API Transports
 
 Like with everything else, IPFS aims to be flexible regarding the API transports.
-Currently, the [kubo](https://github.com/ipfs/kubo) implementation supports
+Currently, the [emo](https://github.com/ipfs/emo) implementation supports
 both an in-process API and an HTTP API. More can be added easily, by mapping the
 API functions over a transport. (This is similar to how gRPC is also _mapped on
 top of transports_, like HTTP).
@@ -44,7 +44,7 @@ In the commandline, IPFS uses a traditional flag and arg-based mapping, where:
 - the rest are positional arguments - e.g. `ipfs key rename <name> <newName>`
 - files are specified by filename, or through stdin
 
-(NOTE: When kubo runs the daemon, the CLI API is actually converted to HTTP
+(NOTE: When emo runs the daemon, the CLI API is actually converted to HTTP
 calls. otherwise, they execute in the same process)
 
 #### HTTP API Transport
@@ -61,8 +61,8 @@ In HTTP, our API layering uses a REST-like mapping, where:
 ## API Commands
 
 There is a "standard IPFS API" which is currently defined as "all the commands
-exposed by the kubo implementation". There are auto-generated [API Docs](https://ipfs.io/docs/api/).
-You can Also see [a listing here](https://github.com/ipfs/kubo/blob/94b832df861728c65e912935641d08880c341e0a/core/commands/root.go#L96-L130), or get a list of
+exposed by the emo implementation". There are auto-generated [API Docs](https://ipfs.io/docs/api/).
+You can Also see [a listing here](https://github.com/ipfs/emo/blob/94b832df861728c65e912935641d08880c341e0a/core/commands/root.go#L96-L130), or get a list of
 commands by running `ipfs commands` locally.
 
 ## Implementing bindings for the HTTP API
@@ -85,14 +85,14 @@ implementation is very concise, and easy to follow.
 
 Despite all the generalization spoken about above, the IPFS API is actually very
 simple. You can inspect all the requests made with `nc` and the `--api` option
-(as of [this PR](https://github.com/ipfs/kubo/pull/1598), or `0.3.8`):
+(as of [this PR](https://github.com/ipfs/emo/pull/1598), or `0.3.8`):
 
 ```
 > nc -l 5002 &
 > ipfs --api /ip4/127.0.0.1/tcp/5002 swarm addrs local --enc=json
 POST /api/v0/version?enc=json&stream-channels=true HTTP/1.1
 Host: 127.0.0.1:5002
-User-Agent: /kubo/0.14.0/
+User-Agent: /emo/0.14.0/
 Content-Length: 0
 Content-Type: application/octet-stream
 Accept-Encoding: gzip
@@ -101,7 +101,7 @@ Accept-Encoding: gzip
 ```
 
 The only hard part is getting the file streaming right. It is (now) fairly easy
-to stream files to kubo using multipart. Basically, we end up with HTTP
+to stream files to emo using multipart. Basically, we end up with HTTP
 requests like this:
 
 ```
@@ -109,7 +109,7 @@ requests like this:
 > ipfs --api /ip4/127.0.0.1/tcp/5002 add -r ~/demo/basic/test
 POST /api/v0/add?encoding=json&progress=true&r=true&stream-channels=true HTTP/1.1
 Host: 127.0.0.1:5002
-User-Agent: /kubo/0.14.0/
+User-Agent: /emo/0.14.0/
 Transfer-Encoding: chunked
 Content-Disposition: form-data: name="files"
 Content-Type: multipart/form-data; boundary=2186ef15d8f2c4f100af72d6d345afe36a4d17ef11264ec5b8ec4436447f

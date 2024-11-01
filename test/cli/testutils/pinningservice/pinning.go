@@ -51,7 +51,7 @@ func New() *PinningService {
 	}
 }
 
-// PinningService is a basic pinning service that implements the Remote Pinning API, for testing Kubo's integration with remote pinning services.
+// PinningService is a basic pinning service that implements the Remote Pinning API, for testing Emo's integration with remote pinning services.
 // Pins are not persisted, they are just kept in-memory, and this provides callbacks for controlling the behavior of the pinning service.
 type PinningService struct {
 	m sync.Mutex

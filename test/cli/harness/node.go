@@ -18,8 +18,8 @@ import (
 	"time"
 
 	logging "github.com/ipfs/go-log/v2"
-	"github.com/ipfs/kubo/config"
-	serial "github.com/ipfs/kubo/config/serialize"
+	"github.com/ipfs/emo/config"
+	serial "github.com/ipfs/emo/config/serialize"
 	"github.com/libp2p/go-libp2p/core/peer"
 	rcmgr "github.com/libp2p/go-libp2p/p2p/host/resource-manager"
 	"github.com/multiformats/go-multiaddr"
@@ -28,8 +28,8 @@ import (
 
 var log = logging.Logger("testharness")
 
-// Node is a single Kubo node.
-// Each node has its own config and can run its own Kubo daemon.
+// Node is a single Emo node.
+// Each node has its own config and can run its own Emo daemon.
 type Node struct {
 	ID  int
 	Dir string
@@ -213,8 +213,8 @@ func (n *Node) Init(ipfsArgs ...string) *Node {
 	return n
 }
 
-// StartDaemonWithReq runs a Kubo daemon with the given request.
-// This overwrites the request Path with the Kubo bin path.
+// StartDaemonWithReq runs a Emo daemon with the given request.
+// This overwrites the request Path with the Emo bin path.
 //
 // For example, if you want to run the daemon and see stderr and stdout to debug:
 //

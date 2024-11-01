@@ -3,8 +3,8 @@ package cli
 import (
 	"testing"
 
-	"github.com/ipfs/kubo/config"
-	"github.com/ipfs/kubo/test/cli/harness"
+	"github.com/ipfs/emo/config"
+	"github.com/ipfs/emo/test/cli/harness"
 	"github.com/stretchr/testify/require"
 )
 

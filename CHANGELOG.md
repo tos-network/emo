@@ -1,4 +1,4 @@
-# Kubo Changelogs
+# Emo Changelogs
 
 - [v0.32](docs/changelogs/v0.32.md)
 - [v0.31](docs/changelogs/v0.31.md)

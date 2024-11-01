@@ -48,13 +48,13 @@ func TestMain(m *testing.M) {
 }
 
 func makeTestData() string {
-	tempDir, err := os.MkdirTemp("", "kubo-migrations-test-*")
+	tempDir, err := os.MkdirTemp("", "emo-migrations-test-*")
 	if err != nil {
 		panic(err)
 	}
 
 	versions := []string{"v1.0.0", "v1.1.0", "v1.1.2", "v2.0.0-rc1", "2.0.0", "v2.0.1"}
-	packages := []string{"kubo", "go-ipfs", "fs-repo-migrations", "fs-repo-1-to-2", "fs-repo-2-to-3", "fs-repo-9-to-10", "fs-repo-10-to-11"}
+	packages := []string{"emo", "go-ipfs", "fs-repo-migrations", "fs-repo-1-to-2", "fs-repo-2-to-3", "fs-repo-9-to-10", "fs-repo-10-to-11"}
 
 	// Generate fake data
 	for _, name := range packages {
@@ -90,7 +90,7 @@ func createFakeArchive(archName, name string, archZip bool) {
 	root := fileName
 
 	// Simulate fetching go-ipfs, which has "ipfs" as the name in the archive.
-	if fileName == "go-ipfs" || fileName == "kubo" {
+	if fileName == "go-ipfs" || fileName == "emo" {
 		fileName = "ipfs"
 	}
 	fileName = ExeName(fileName)
@@ -121,7 +121,7 @@ func makeTestCar(testData string) string {
 	proxyRoot := cid.NewCidV1(uint64(multicodec.DagPb), hash)
 
 	// Make CAR file
-	fd, err := os.CreateTemp("", "kubo-migrations-test-*.car")
+	fd, err := os.CreateTemp("", "emo-migrations-test-*.car")
 	if err != nil {
 		panic(err)
 	}

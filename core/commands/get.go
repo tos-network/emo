@@ -12,9 +12,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/ipfs/kubo/core/commands/cmdenv"
-	"github.com/ipfs/kubo/core/commands/cmdutils"
-	"github.com/ipfs/kubo/core/commands/e"
+	"github.com/ipfs/emo/core/commands/cmdenv"
+	"github.com/ipfs/emo/core/commands/cmdutils"
+	"github.com/ipfs/emo/core/commands/e"
 
 	"github.com/cheggaaa/pb"
 	"github.com/ipfs/boxo/files"

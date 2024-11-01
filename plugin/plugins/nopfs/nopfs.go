@@ -6,9 +6,9 @@ import (
 
 	"github.com/ipfs-shipyard/nopfs"
 	"github.com/ipfs-shipyard/nopfs/ipfs"
-	"github.com/ipfs/kubo/core"
-	"github.com/ipfs/kubo/core/node"
-	"github.com/ipfs/kubo/plugin"
+	"github.com/ipfs/emo/core"
+	"github.com/ipfs/emo/core/node"
+	"github.com/ipfs/emo/plugin"
 	"go.uber.org/fx"
 )
 
@@ -48,18 +48,18 @@ func MakeBlocker(repoPath string) func() (*nopfs.Blocker, error) {
 			return nil, err
 		}
 
-		kuboFiles, err := nopfs.GetDenylistFilesInDir(filepath.Join(repoPath, "denylists"))
+		emoFiles, err := nopfs.GetDenylistFilesInDir(filepath.Join(repoPath, "denylists"))
 		if err != nil {
 			return nil, err
 		}
 
-		files := append(defaultFiles, kuboFiles...)
+		files := append(defaultFiles, emoFiles...)
 
 		return nopfs.NewBlocker(files)
 	}
 }
 
-// PathResolvers returns wrapped PathResolvers for Kubo.
+// PathResolvers returns wrapped PathResolvers for Emo.
 func PathResolvers(fetchers node.FetchersIn, blocker *nopfs.Blocker) node.PathResolversOut {
 	res := node.PathResolverConfig(fetchers)
 	return node.PathResolversOut{

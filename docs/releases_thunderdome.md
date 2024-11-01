@@ -1,7 +1,7 @@
-# Testing Kubo releases with Thunderdome
-This document is for running Thunderdome tests by release engineers as part of releasing Kubo.
+# Testing Emo releases with Thunderdome
+This document is for running Thunderdome tests by release engineers as part of releasing Emo.
 
-We use Thunderdome to replay ipfs.io gateway traffic in a controlled environment against two different versions of Kubo, and we record metrics and compare them to look for logic or performance regressions before releasing a new Kubo version.
+We use Thunderdome to replay ipfs.io gateway traffic in a controlled environment against two different versions of Emo, and we record metrics and compare them to look for logic or performance regressions before releasing a new Emo version.
 
 For background information about how Thunderdome works, see: https://github.com/ipfs-shipyard/thunderdome
 
@@ -17,23 +17,23 @@ For background information about how Thunderdome works, see: https://github.com/
   
 ## Add & run an experiment
 
-Create a new release configuration JSON in the `experiments/` directory, based on the most recent `kubo-release` configuration, and tweak as necessary. Generally we setup the targets to run a commit against the tag of the last release, such as:
+Create a new release configuration JSON in the `experiments/` directory, based on the most recent `emo-release` configuration, and tweak as necessary. Generally we setup the targets to run a commit against the tag of the last release, such as:
 
 ```json
 	"targets": [
 		{
-			"name": "kubo190-4283b9",
-			"description": "kubo 0.19.0-rc1",
+			"name": "emo190-4283b9",
+			"description": "emo 0.19.0-rc1",
 			"build_from_git": {
-				"repo": "https://github.com/ipfs/kubo.git",
+				"repo": "https://github.com/ipfs/emo.git",
 				"commit":"4283b9d98f8438fc8751ccc840d8fc24eeae6f13"
 			}
 		},
 		{
-			"name": "kubo181",
-			"description": "kubo 0.18.",
+			"name": "emo181",
+			"description": "emo 0.18.",
 			"build_from_git": {
-				"repo": "https://github.com/ipfs/kubo.git",
+				"repo": "https://github.com/ipfs/emo.git",
 				"tag":"v0.18.1"
 			}
 		}

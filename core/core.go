@@ -50,13 +50,13 @@ import (
 	"github.com/ipfs/boxo/namesys"
 	ipnsrp "github.com/ipfs/boxo/namesys/republisher"
 	"github.com/ipfs/boxo/peering"
-	"github.com/ipfs/kubo/config"
-	"github.com/ipfs/kubo/core/node"
-	"github.com/ipfs/kubo/core/node/libp2p"
-	"github.com/ipfs/kubo/fuse/mount"
-	"github.com/ipfs/kubo/p2p"
-	"github.com/ipfs/kubo/repo"
-	irouting "github.com/ipfs/kubo/routing"
+	"github.com/ipfs/emo/config"
+	"github.com/ipfs/emo/core/node"
+	"github.com/ipfs/emo/core/node/libp2p"
+	"github.com/ipfs/emo/fuse/mount"
+	"github.com/ipfs/emo/p2p"
+	"github.com/ipfs/emo/repo"
+	irouting "github.com/ipfs/emo/routing"
 )
 
 var log = logging.Logger("core")

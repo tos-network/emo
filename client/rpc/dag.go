@@ -10,7 +10,7 @@ import (
 	blocks "github.com/ipfs/go-block-format"
 	"github.com/ipfs/go-cid"
 	format "github.com/ipfs/go-ipld-format"
-	"github.com/ipfs/kubo/core/coreiface/options"
+	"github.com/ipfs/emo/core/coreiface/options"
 	multicodec "github.com/multiformats/go-multicodec"
 )
 

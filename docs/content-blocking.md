@@ -1,16 +1,16 @@
 <h1 align="center">
   <br>
-  <a href="#readme"><img src="https://github.com/ipfs-shipyard/nopfs/blob/41484a818e6542314f784da852fc41b76f2d48a6/logo.png?raw=true" alt="content blocking logo" title="content blocking in Kubo" width="200"></a>
+  <a href="#readme"><img src="https://github.com/ipfs-shipyard/nopfs/blob/41484a818e6542314f784da852fc41b76f2d48a6/logo.png?raw=true" alt="content blocking logo" title="content blocking in Emo" width="200"></a>
   <br>
-  Content Blocking in Kubo
+  Content Blocking in Emo
   <br>
 </h1>
 
-Kubo ships with built-in support for denylist format from [IPIP-383](https://github.com/ipfs/specs/pull/383).
+Emo ships with built-in support for denylist format from [IPIP-383](https://github.com/ipfs/specs/pull/383).
 
 ## Default behavior
 
-Official Kubo build does not ship with any denylists enabled by default.
+Official Emo build does not ship with any denylists enabled by default.
 
 Content blocking is an opt-in decision made by the operator of `ipfs daemon`.
 

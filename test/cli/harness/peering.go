@@ -5,7 +5,7 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/ipfs/kubo/config"
+	"github.com/ipfs/emo/config"
 )
 
 type Peering struct {

@@ -9,9 +9,9 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/ipfs/kubo/test/cli/harness"
-	"github.com/ipfs/kubo/test/cli/testutils"
-	"github.com/ipfs/kubo/test/cli/testutils/pinningservice"
+	"github.com/ipfs/emo/test/cli/harness"
+	"github.com/ipfs/emo/test/cli/testutils"
+	"github.com/ipfs/emo/test/cli/testutils/pinningservice"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"github.com/tidwall/gjson"

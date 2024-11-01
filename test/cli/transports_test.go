@@ -6,9 +6,9 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/ipfs/kubo/config"
-	"github.com/ipfs/kubo/test/cli/harness"
-	"github.com/ipfs/kubo/test/cli/testutils"
+	"github.com/ipfs/emo/config"
+	"github.com/ipfs/emo/test/cli/harness"
+	"github.com/ipfs/emo/test/cli/testutils"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -119,7 +119,7 @@ func TestTransports(t *testing.T) {
 	})
 
 	t.Run("QUIC connects with non-dialable transports", func(t *testing.T) {
-		// This test targets specific Kubo internals which may change later. This checks
+		// This test targets specific Emo internals which may change later. This checks
 		// if we can announce an address we do not listen on, and then are able to connect
 		// via a different address that is available.
 		t.Parallel()

@@ -12,8 +12,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ipfs/kubo/config"
-	"github.com/ipfs/kubo/test/cli/harness"
+	"github.com/ipfs/emo/config"
+	"github.com/ipfs/emo/test/cli/harness"
 	"github.com/libp2p/go-libp2p/core/peer"
 	"github.com/multiformats/go-multiaddr"
 	manet "github.com/multiformats/go-multiaddr/net"
@@ -113,7 +113,7 @@ func TestGateway(t *testing.T) {
 		})
 
 		// This enables go get to parse go-import meta tags from index.html files stored in IPFS
-		// https://github.com/ipfs/kubo/pull/3963
+		// https://github.com/ipfs/emo/pull/3963
 		t.Run("GET IPFS directory with index.html and no trailing slash returns expected output when go-get is passed", func(t *testing.T) {
 			t.Parallel()
 			resp := client.Get("/ipfs/{{.RootCID}}/dirwithindex?go-get=1")

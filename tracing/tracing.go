@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/ipfs/boxo/tracing"
-	version "github.com/ipfs/kubo"
+	version "github.com/ipfs/emo"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/sdk/resource"
 	"go.opentelemetry.io/otel/sdk/trace"
@@ -49,7 +49,7 @@ func NewTracerProvider(ctx context.Context) (shutdownTracerProvider, error) {
 	r, err := resource.Merge(
 		resource.Default(),
 		resource.NewSchemaless(
-			semconv.ServiceNameKey.String("Kubo"),
+			semconv.ServiceNameKey.String("Emo"),
 			semconv.ServiceVersionKey.String(version.CurrentVersionNumber),
 		),
 	)
@@ -63,5 +63,5 @@ func NewTracerProvider(ctx context.Context) (shutdownTracerProvider, error) {
 
 // Span starts a new span using the standard IPFS tracing conventions.
 func Span(ctx context.Context, componentName string, spanName string, opts ...traceapi.SpanStartOption) (context.Context, traceapi.Span) {
-	return otel.Tracer("Kubo").Start(ctx, fmt.Sprintf("%s.%s", componentName, spanName), opts...)
+	return otel.Tracer("Emo").Start(ctx, fmt.Sprintf("%s.%s", componentName, spanName), opts...)
 }

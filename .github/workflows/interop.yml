@@ -22,7 +22,7 @@ defaults:
 
 jobs:
   interop-prep:
-    if: github.repository == 'ipfs/kubo' || github.event_name == 'workflow_dispatch'
+    if: github.repository == 'ipfs/emo' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     env:
@@ -43,11 +43,11 @@ jobs:
       - run: make build
       - uses: actions/upload-artifact@v4
         with:
-          name: kubo
+          name: emo
           path: cmd/ipfs/ipfs
   helia-interop:
     needs: [interop-prep]
-    runs-on: ${{ fromJSON(github.repository == 'ipfs/kubo' && '["self-hosted", "linux", "x64", "2xlarge"]' || '"ubuntu-latest"') }}
+    runs-on: ${{ fromJSON(github.repository == 'ipfs/emo' && '["self-hosted", "linux", "x64", "2xlarge"]' || '"ubuntu-latest"') }}
     timeout-minutes: 20
     defaults:
       run:
@@ -58,7 +58,7 @@ jobs:
           node-version: lts/*
       - uses: actions/download-artifact@v4
         with:
-          name: kubo
+          name: emo
           path: cmd/ipfs
       - run: chmod +x cmd/ipfs/ipfs
       - run: echo "dir=$(npm config get cache)" >> $GITHUB_OUTPUT
@@ -72,10 +72,10 @@ jobs:
       - run: sudo apt install -y libxkbcommon0 libxdamage1 libgbm1 libpango-1.0-0 libcairo2 # dependencies for playwright
       - run: npx --package @helia/interop helia-interop
         env:
-          KUBO_BINARY: ${{ github.workspace }}/cmd/ipfs/ipfs
+          EMO_BINARY: ${{ github.workspace }}/cmd/ipfs/ipfs
   ipfs-webui:
     needs: [interop-prep]
-    runs-on: ${{ fromJSON(github.repository == 'ipfs/kubo' && '["self-hosted", "linux", "x64", "2xlarge"]' || '"ubuntu-latest"') }}
+    runs-on: ${{ fromJSON(github.repository == 'ipfs/emo' && '["self-hosted", "linux", "x64", "2xlarge"]' || '"ubuntu-latest"') }}
     timeout-minutes: 20
     env:
       NO_SANDBOX: true
@@ -94,7 +94,7 @@ jobs:
           node-version: 18.14.0
       - uses: actions/download-artifact@v4
         with:
-          name: kubo
+          name: emo
           path: cmd/ipfs
       - run: chmod +x cmd/ipfs/ipfs
       - uses: actions/checkout@v4
@@ -129,7 +129,7 @@ jobs:
       - name: Build ipfs-webui@main (state=${{ steps.state.outputs.state }})
         run: npm run test:build
         working-directory: ipfs-webui
-      - name: Test ipfs-webui@main (state=${{ steps.state.outputs.state }}) E2E against the locally built Kubo binary
+      - name: Test ipfs-webui@main (state=${{ steps.state.outputs.state }}) E2E against the locally built Emo binary
         run: npm run test:e2e
         env:
           IPFS_GO_EXEC: ${{ github.workspace }}/cmd/ipfs/ipfs

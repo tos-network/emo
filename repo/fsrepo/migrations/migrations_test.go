@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	config "github.com/ipfs/kubo/config"
+	config "github.com/ipfs/emo/config"
 )
 
 func TestFindMigrations(t *testing.T) {

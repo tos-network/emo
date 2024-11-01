@@ -12,7 +12,7 @@ Otherwise, check out the following guides to using and developing IPFS:
     - [Datastore configuration](datastores.md)
     - [Experimental features](experimental-features.md)
 
-## Developing `kubo`
+## Developing `emo`
 
 - First, please read the Contributing Guidelines [for IPFS projects](https://github.com/ipfs/community/blob/master/CONTRIBUTING.md) and then the Contributing Guidelines for [Go code specifically](https://github.com/ipfs/community/blob/master/CONTRIBUTING_GO.md)
 - Building on…
@@ -23,7 +23,7 @@ Otherwise, check out the following guides to using and developing IPFS:
 ## Guides
 
 - [How to Implement an API Client](implement-api-bindings.md)
-- [Connecting with Websockets](transports.md) — if you want `js-ipfs` nodes in web browsers to connect to your `kubo` node, you will need to turn on websocket support in your `kubo` node.
+- [Connecting with Websockets](transports.md) — if you want `js-ipfs` nodes in web browsers to connect to your `emo` node, you will need to turn on websocket support in your `emo` node.
 
 ## Advanced User Guides
 
@@ -31,7 +31,7 @@ Otherwise, check out the following guides to using and developing IPFS:
 - [Installing command completion](command-completion.md)
 - [Mounting IPFS with FUSE](fuse.md)
 - [Installing plugins](plugins.md)
-- [Setting up an IPFS Gateway](https://github.com/ipfs/kubo/blob/master/docs/gateway.md)
+- [Setting up an IPFS Gateway](https://github.com/ipfs/emo/blob/master/docs/gateway.md)
 
 ## Other
 

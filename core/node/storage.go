@@ -3,13 +3,13 @@ package node
 import (
 	blockstore "github.com/ipfs/boxo/blockstore"
 	"github.com/ipfs/go-datastore"
-	config "github.com/ipfs/kubo/config"
+	config "github.com/ipfs/emo/config"
 	"go.uber.org/fx"
 
 	"github.com/ipfs/boxo/filestore"
-	"github.com/ipfs/kubo/core/node/helpers"
-	"github.com/ipfs/kubo/repo"
-	"github.com/ipfs/kubo/thirdparty/verifbs"
+	"github.com/ipfs/emo/core/node/helpers"
+	"github.com/ipfs/emo/repo"
+	"github.com/ipfs/emo/thirdparty/verifbs"
 )
 
 // RepoConfig loads configuration from the repo

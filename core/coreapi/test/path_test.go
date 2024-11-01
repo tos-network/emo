@@ -10,7 +10,7 @@ import (
 	"github.com/ipfs/boxo/ipld/merkledag"
 	uio "github.com/ipfs/boxo/ipld/unixfs/io"
 	"github.com/ipfs/boxo/path"
-	"github.com/ipfs/kubo/core/coreiface/options"
+	"github.com/ipfs/emo/core/coreiface/options"
 	"github.com/ipld/go-ipld-prime"
 )
 

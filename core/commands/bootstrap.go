@@ -6,12 +6,12 @@ import (
 	"io"
 	"sort"
 
-	cmdenv "github.com/ipfs/kubo/core/commands/cmdenv"
-	repo "github.com/ipfs/kubo/repo"
-	fsrepo "github.com/ipfs/kubo/repo/fsrepo"
+	cmdenv "github.com/ipfs/emo/core/commands/cmdenv"
+	repo "github.com/ipfs/emo/repo"
+	fsrepo "github.com/ipfs/emo/repo/fsrepo"
 
 	cmds "github.com/ipfs/go-ipfs-cmds"
-	config "github.com/ipfs/kubo/config"
+	config "github.com/ipfs/emo/config"
 	peer "github.com/libp2p/go-libp2p/core/peer"
 	ma "github.com/multiformats/go-multiaddr"
 )

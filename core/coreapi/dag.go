@@ -10,7 +10,7 @@ import (
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/trace"
 
-	"github.com/ipfs/kubo/tracing"
+	"github.com/ipfs/emo/tracing"
 )
 
 type dagAPI struct {

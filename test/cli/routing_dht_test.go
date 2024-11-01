@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/ipfs/kubo/test/cli/harness"
-	"github.com/ipfs/kubo/test/cli/testutils"
+	"github.com/ipfs/emo/test/cli/harness"
+	"github.com/ipfs/emo/test/cli/testutils"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

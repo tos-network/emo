@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/ipfs/boxo/bootstrap"
-	"github.com/ipfs/kubo/core/node"
+	"github.com/ipfs/emo/core/node"
 
 	"github.com/ipfs/go-metrics-interface"
 	"go.uber.org/dig"
@@ -32,7 +32,7 @@ var fxOptionFuncs []fxOptFunc
 // and the resulting options are passed into the next function's FXNodeInfo.
 //
 // Note that these are applied globally, by all invocations of NewNode.
-// There are multiple places in Kubo that construct nodes, such as:
+// There are multiple places in Emo that construct nodes, such as:
 //   - Repo initialization
 //   - Daemon initialization
 //   - When running migrations
@@ -84,7 +84,7 @@ func NewNode(ctx context.Context, cfg *BuildCfg) (*IpfsNode, error) {
 			return nil, fmt.Errorf("building fx opts: %w", err)
 		}
 	}
-	//nolint:staticcheck // https://github.com/ipfs/kubo/pull/9423#issuecomment-1341038770
+	//nolint:staticcheck // https://github.com/ipfs/emo/pull/9423#issuecomment-1341038770
 	opts = append(opts, fx.Extract(n))
 
 	app := fx.New(opts...)

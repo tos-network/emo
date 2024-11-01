@@ -1,4 +1,4 @@
-package kubo
+package emo
 
 import (
 	"context"

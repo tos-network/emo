@@ -7,15 +7,15 @@ import (
 	"io"
 	"strings"
 
-	cmdenv "github.com/ipfs/kubo/core/commands/cmdenv"
-	"github.com/ipfs/kubo/core/commands/cmdutils"
+	cmdenv "github.com/ipfs/emo/core/commands/cmdenv"
+	"github.com/ipfs/emo/core/commands/cmdutils"
 
 	merkledag "github.com/ipfs/boxo/ipld/merkledag"
 	cid "github.com/ipfs/go-cid"
 	cidenc "github.com/ipfs/go-cidutil/cidenc"
 	cmds "github.com/ipfs/go-ipfs-cmds"
 	ipld "github.com/ipfs/go-ipld-format"
-	iface "github.com/ipfs/kubo/core/coreiface"
+	iface "github.com/ipfs/emo/core/coreiface"
 )
 
 var refsEncoderMap = cmds.EncoderMap{
@@ -54,7 +54,7 @@ with the following format:
 
 List all references recursively by using the flag '-r'.
 
-NOTE: Like most other commands, Kubo will try to fetch the blocks of the passed path if they can't be found in the local store if it is running in online mode.
+NOTE: Like most other commands, Emo will try to fetch the blocks of the passed path if they can't be found in the local store if it is running in online mode.
 `,
 	},
 	Subcommands: map[string]*cmds.Command{

@@ -9,10 +9,10 @@ import (
 
 	versioncmp "github.com/hashicorp/go-version"
 	cmds "github.com/ipfs/go-ipfs-cmds"
-	version "github.com/ipfs/kubo"
-	"github.com/ipfs/kubo/config"
-	"github.com/ipfs/kubo/core"
-	"github.com/ipfs/kubo/core/commands/cmdenv"
+	version "github.com/ipfs/emo"
+	"github.com/ipfs/emo/config"
+	"github.com/ipfs/emo/core"
+	"github.com/ipfs/emo/core/commands/cmdenv"
 	"github.com/libp2p/go-libp2p-kad-dht/fullrt"
 	peer "github.com/libp2p/go-libp2p/core/peer"
 	pstore "github.com/libp2p/go-libp2p/core/peerstore"
@@ -55,7 +55,7 @@ var VersionCmd = &cmds.Command{
 				if version.Commit != "" {
 					ver += "-" + version.Commit
 				}
-				out := fmt.Sprintf("Kubo version: %s\n"+
+				out := fmt.Sprintf("Emo version: %s\n"+
 					"Repo version: %s\nSystem version: %s\nGolang version: %s\n",
 					ver, version.Repo, version.System, version.Golang)
 				fmt.Fprint(w, out)
@@ -152,12 +152,12 @@ type VersionCheckOutput struct {
 
 var checkVersionCommand = &cmds.Command{
 	Helptext: cmds.HelpText{
-		Tagline: "Checks Kubo version against connected peers.",
+		Tagline: "Checks Emo version against connected peers.",
 		ShortDescription: `
 This command uses the libp2p identify protocol to check the 'AgentVersion'
-of connected peers and see if the Kubo version we're running is outdated.
+of connected peers and see if the Emo version we're running is outdated.
 
-Peers with an AgentVersion that doesn't start with 'kubo/' are ignored.
+Peers with an AgentVersion that doesn't start with 'emo/' are ignored.
 'UpdateAvailable' is set to true only if the 'min-fraction' criteria are met.
 
 The 'ipfs daemon' does the same check regularly and logs when a new version
@@ -166,7 +166,7 @@ Version.SwarmCheckEnabled:false in the config.
 `,
 	},
 	Options: []cmds.Option{
-		cmds.IntOption(versionCheckThresholdOptionName, "t", "Percentage (1-100) of sampled peers with the new Kubo version needed to trigger an update warning.").WithDefault(config.DefaultSwarmCheckPercentThreshold),
+		cmds.IntOption(versionCheckThresholdOptionName, "t", "Percentage (1-100) of sampled peers with the new Emo version needed to trigger an update warning.").WithDefault(config.DefaultSwarmCheckPercentThreshold),
 	},
 	Type: VersionCheckOutput{},
 
@@ -181,7 +181,7 @@ Version.SwarmCheckEnabled:false in the config.
 		}
 
 		minPercent, _ := req.Options[versionCheckThresholdOptionName].(int64)
-		output, err := DetectNewKuboVersion(nd, minPercent)
+		output, err := DetectNewEmoVersion(nd, minPercent)
 		if err != nil {
 			return err
 		}
@@ -193,11 +193,11 @@ Version.SwarmCheckEnabled:false in the config.
 	},
 }
 
-// DetectNewKuboVersion observers kubo version reported by other peers via
+// DetectNewEmoVersion observers emo version reported by other peers via
 // libp2p identify protocol and notifies when threshold fraction of seen swarm
-// is running updated Kubo. It is used by RPC and CLI at 'ipfs version check'
+// is running updated Emo. It is used by RPC and CLI at 'ipfs version check'
 // and also periodically when 'ipfs daemon' is running.
-func DetectNewKuboVersion(nd *core.IpfsNode, minPercent int64) (VersionCheckOutput, error) {
+func DetectNewEmoVersion(nd *core.IpfsNode, minPercent int64) (VersionCheckOutput, error) {
 	ourVersion, err := versioncmp.NewVersion(version.CurrentVersionNumber)
 	if err != nil {
 		return VersionCheckOutput{}, fmt.Errorf("could not parse our own version %q: %w",
@@ -216,7 +216,7 @@ func DetectNewKuboVersion(nd *core.IpfsNode, minPercent int64) (VersionCheckOutp
 		if len(segments) < 2 {
 			return
 		}
-		if segments[0] != "kubo" {
+		if segments[0] != "emo" {
 			return
 		}
 		versionNumber := segments[1] // As in our CurrentVersionNumber

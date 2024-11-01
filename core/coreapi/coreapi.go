@@ -26,9 +26,9 @@ import (
 	provider "github.com/ipfs/boxo/provider"
 	offlineroute "github.com/ipfs/boxo/routing/offline"
 	ipld "github.com/ipfs/go-ipld-format"
-	"github.com/ipfs/kubo/config"
-	coreiface "github.com/ipfs/kubo/core/coreiface"
-	"github.com/ipfs/kubo/core/coreiface/options"
+	"github.com/ipfs/emo/config"
+	coreiface "github.com/ipfs/emo/core/coreiface"
+	"github.com/ipfs/emo/core/coreiface/options"
 	pubsub "github.com/libp2p/go-libp2p-pubsub"
 	record "github.com/libp2p/go-libp2p-record"
 	ci "github.com/libp2p/go-libp2p/core/crypto"
@@ -39,9 +39,9 @@ import (
 	madns "github.com/multiformats/go-multiaddr-dns"
 
 	"github.com/ipfs/boxo/namesys"
-	"github.com/ipfs/kubo/core"
-	"github.com/ipfs/kubo/core/node"
-	"github.com/ipfs/kubo/repo"
+	"github.com/ipfs/emo/core"
+	"github.com/ipfs/emo/core/node"
+	"github.com/ipfs/emo/repo"
 )
 
 type CoreAPI struct {
@@ -140,7 +140,7 @@ func (api *CoreAPI) PubSub() coreiface.PubSubAPI {
 	return (*PubSubAPI)(api)
 }
 
-// Routing returns the RoutingAPI interface implementation backed by the kubo node
+// Routing returns the RoutingAPI interface implementation backed by the emo node
 func (api *CoreAPI) Routing() coreiface.RoutingAPI {
 	return (*RoutingAPI)(api)
 }

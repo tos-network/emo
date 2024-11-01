@@ -11,11 +11,11 @@ import (
 	cmds "github.com/ipfs/go-ipfs-cmds"
 	ipld "github.com/ipfs/go-ipld-format"
 	ipldlegacy "github.com/ipfs/go-ipld-legacy"
-	"github.com/ipfs/kubo/core/coreiface/options"
+	"github.com/ipfs/emo/core/coreiface/options"
 	gocarv2 "github.com/ipld/go-car/v2"
 
-	"github.com/ipfs/kubo/core/commands/cmdenv"
-	"github.com/ipfs/kubo/core/commands/cmdutils"
+	"github.com/ipfs/emo/core/commands/cmdenv"
+	"github.com/ipfs/emo/core/commands/cmdutils"
 )
 
 func dagImport(req *cmds.Request, res cmds.ResponseEmitter, env cmds.Environment) error {

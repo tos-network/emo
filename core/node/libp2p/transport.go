@@ -2,7 +2,7 @@ package libp2p
 
 import (
 	"fmt"
-	"github.com/ipfs/kubo/config"
+	"github.com/ipfs/emo/config"
 	"github.com/ipshipyard/p2p-forge/client"
 	"github.com/libp2p/go-libp2p"
 	"github.com/libp2p/go-libp2p/core/metrics"

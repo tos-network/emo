@@ -13,7 +13,7 @@ import (
 	"testing"
 
 	"github.com/ipfs/go-cid"
-	"github.com/ipfs/kubo/test/cli/harness"
+	"github.com/ipfs/emo/test/cli/harness"
 	carstore "github.com/ipld/go-car/v2/blockstore"
 	"github.com/libp2p/go-libp2p"
 	"github.com/libp2p/go-libp2p/core/peer"
@@ -307,7 +307,7 @@ func TestContentBlocking(t *testing.T) {
 	// We need to confirm denylist is active on the
 	// trustless gateway exposed over libp2p
 	// when Experimental.GatewayOverLibp2p=true
-	// (https://github.com/ipfs/kubo/blob/master/docs/experimental-features.md#http-gateway-over-libp2p)
+	// (https://github.com/ipfs/emo/blob/master/docs/experimental-features.md#http-gateway-over-libp2p)
 	// NOTE: this type fo gateway is hardcoded to be NoFetch: it does not fetch
 	// data that is not in local store, so we only need to run it once: a
 	// simple smoke-test for allowed CID and blockedCID.

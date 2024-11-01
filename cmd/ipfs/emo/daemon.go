@@ -1,4 +1,4 @@
-package kubo
+package emo
 
 import (
 	"context"
@@ -21,22 +21,22 @@ import (
 
 	cmds "github.com/ipfs/go-ipfs-cmds"
 	mprome "github.com/ipfs/go-metrics-prometheus"
-	version "github.com/ipfs/kubo"
-	utilmain "github.com/ipfs/kubo/cmd/ipfs/util"
-	oldcmds "github.com/ipfs/kubo/commands"
-	config "github.com/ipfs/kubo/config"
-	cserial "github.com/ipfs/kubo/config/serialize"
-	"github.com/ipfs/kubo/core"
-	commands "github.com/ipfs/kubo/core/commands"
-	"github.com/ipfs/kubo/core/coreapi"
-	corehttp "github.com/ipfs/kubo/core/corehttp"
-	options "github.com/ipfs/kubo/core/coreiface/options"
-	corerepo "github.com/ipfs/kubo/core/corerepo"
-	libp2p "github.com/ipfs/kubo/core/node/libp2p"
-	nodeMount "github.com/ipfs/kubo/fuse/node"
-	fsrepo "github.com/ipfs/kubo/repo/fsrepo"
-	"github.com/ipfs/kubo/repo/fsrepo/migrations"
-	"github.com/ipfs/kubo/repo/fsrepo/migrations/ipfsfetcher"
+	version "github.com/ipfs/emo"
+	utilmain "github.com/ipfs/emo/cmd/ipfs/util"
+	oldcmds "github.com/ipfs/emo/commands"
+	config "github.com/ipfs/emo/config"
+	cserial "github.com/ipfs/emo/config/serialize"
+	"github.com/ipfs/emo/core"
+	commands "github.com/ipfs/emo/core/commands"
+	"github.com/ipfs/emo/core/coreapi"
+	corehttp "github.com/ipfs/emo/core/corehttp"
+	options "github.com/ipfs/emo/core/coreiface/options"
+	corerepo "github.com/ipfs/emo/core/corerepo"
+	libp2p "github.com/ipfs/emo/core/node/libp2p"
+	nodeMount "github.com/ipfs/emo/fuse/node"
+	fsrepo "github.com/ipfs/emo/repo/fsrepo"
+	"github.com/ipfs/emo/repo/fsrepo/migrations"
+	"github.com/ipfs/emo/repo/fsrepo/migrations/ipfsfetcher"
 	goprocess "github.com/jbenet/goprocess"
 	p2pcrypto "github.com/libp2p/go-libp2p/core/crypto"
 	pnet "github.com/libp2p/go-libp2p/core/pnet"
@@ -91,7 +91,7 @@ running, calls to 'ipfs' commands will be sent over the network to
 the daemon.
 `,
 		LongDescription: `
-The Kubo daemon will start listening on ports on the network, which are
+The Emo daemon will start listening on ports on the network, which are
 documented in (and can be modified through) 'ipfs config Addresses'.
 For example, to change the 'Gateway' port:
 
@@ -114,13 +114,13 @@ make sure to protect the port as you would other services or database
 (firewall, authenticated proxy, etc), or at least set API.Authorizations.
 
 If you do not want to open any ports for RPC, and only want to use
-kubo CLI client, it is possible to expose the RPC over Unix socket:
+emo CLI client, it is possible to expose the RPC over Unix socket:
 
-  ipfs config Addresses.API /unix/var/run/kubo.socket
+  ipfs config Addresses.API /unix/var/run/emo.socket
 
 HTTP Headers
 
-Kubo supports passing arbitrary headers to the RPC API and Gateway. You can
+Emo supports passing arbitrary headers to the RPC API and Gateway. You can
 do this by setting headers on the API.HTTPHeaders and Gateway.HTTPHeaders
 keys:
 
@@ -148,7 +148,7 @@ second signal.
 
 IPFS_PATH environment variable
 
-Kubo uses a repository in the local file system. By default, the repo is
+Emo uses a repository in the local file system. By default, the repo is
 located at ~/.ipfs. To change the repo location, set the $IPFS_PATH
 environment variable:
 
@@ -156,7 +156,7 @@ environment variable:
 
 DEPRECATION NOTICE
 
-Previously, Kubo used an environment variable as seen below:
+Previously, Emo used an environment variable as seen below:
 
   export API_ORIGIN="http://localhost:8888/"
 
@@ -167,7 +167,7 @@ Headers.
 	},
 
 	Options: []cmds.Option{
-		cmds.BoolOption(initOptionKwd, "Initialize Kubo with default settings if not already initialized"),
+		cmds.BoolOption(initOptionKwd, "Initialize Emo with default settings if not already initialized"),
 		cmds.StringOption(initConfigOptionKwd, "Path to existing configuration file to be loaded during --init"),
 		cmds.StringOption(initProfileOptionKwd, "Configuration profiles to apply for --init. See ipfs init --help for more"),
 		cmds.StringOption(routingOptionKwd, "Overrides the routing option").WithDefault(routingOptionDefaultKwd),
@@ -414,7 +414,7 @@ func daemonFunc(req *cmds.Request, re cmds.ResponseEmitter, env cmds.Environment
 	// To avoid breaking existing setups, switch them to DHT-only.
 	if routingOption == routingOptionAutoKwd {
 		if key, _ := repo.SwarmKey(); key != nil || pnet.ForcePrivateNetwork {
-			log.Error("Private networking (swarm.key / LIBP2P_FORCE_PNET) does not work with public HTTP IPNIs enabled by Routing.Type=auto. Kubo will use Routing.Type=dht instead. Update config to remove this message.")
+			log.Error("Private networking (swarm.key / LIBP2P_FORCE_PNET) does not work with public HTTP IPNIs enabled by Routing.Type=auto. Emo will use Routing.Type=dht instead. Update config to remove this message.")
 			routingOption = routingOptionDHTKwd
 		}
 	}
@@ -477,7 +477,7 @@ func daemonFunc(req *cmds.Request, re cmds.ResponseEmitter, env cmds.Environment
 	if node.PrivateKey.Type() == p2pcrypto.RSA {
 		fmt.Print(`
 Warning: You are using an RSA Peer ID, which was replaced by Ed25519
-as the default recommended in Kubo since September 2020. Signing with
+as the default recommended in Emo since September 2020. Signing with
 RSA Peer IDs is more CPU-intensive than with other key types.
 It is recommended that you change your public key type to ed25519
 by using the following command:
@@ -572,7 +572,7 @@ take effect.
 	// Add ipfs version info to prometheus metrics
 	ipfsInfoMetric := promauto.NewGaugeVec(prometheus.GaugeOpts{
 		Name: "ipfs_info",
-		Help: "Kubo IPFS version information.",
+		Help: "Emo IPFS version information.",
 	}, []string{"version", "commit"})
 
 	// Setting to 1 lets us multiply it with other stats to add the version labels
@@ -601,7 +601,7 @@ take effect.
 	}()
 
 	if !offline {
-		// Warn users who were victims of 'lowprofile' footgun (https://github.com/ipfs/kubo/pull/10524)
+		// Warn users who were victims of 'lowprofile' footgun (https://github.com/ipfs/emo/pull/10524)
 		if cfg.Experimental.StrategicProviding {
 			fmt.Print(`
 ⚠️ Reprovide system is disabled due to 'Experimental.StrategicProviding=true'
@@ -728,7 +728,7 @@ func serveHTTPApi(req *cmds.Request, cctx *oldcmds.Context) (<-chan error, error
 		case "tcp", "tcp4", "tcp6":
 			rpc := listener.Addr().String()
 			// replace catch-all with explicit localhost URL that works in browsers
-			// https://github.com/ipfs/kubo/issues/10515
+			// https://github.com/ipfs/emo/issues/10515
 			if strings.Contains(rpc, "0.0.0.0:") {
 				rpc = strings.Replace(rpc, "0.0.0.0:", "127.0.0.1:", 1)
 			} else if strings.Contains(rpc, "[::]:") {
@@ -827,7 +827,7 @@ func printLibp2pPorts(node *core.IpfsNode) {
 
 	// Multiple libp2p transports can use same port.
 	// Deduplicate all listeners and collect unique IP:port (udp|tcp) combinations
-	// which is useful information for operator deploying Kubo in TCP/IP infra.
+	// which is useful information for operator deploying Emo in TCP/IP infra.
 	addrMap := make(map[string]map[string]struct{})
 	re := regexp.MustCompile(`^/(?:ip[46]|dns(?:[46])?)/([^/]+)/(tcp|udp)/(\d+)(/.*)?$`)
 	for _, addr := range ifaceAddrs {
@@ -1126,7 +1126,7 @@ func printVersion() {
 	if version.CurrentCommit != "" {
 		v += "-" + version.CurrentCommit
 	}
-	fmt.Printf("Kubo version: %s\n", v)
+	fmt.Printf("Emo version: %s\n", v)
 	fmt.Printf("Repo version: %d\n", fsrepo.RepoVersion)
 	fmt.Printf("System version: %s\n", runtime.GOARCH+"/"+runtime.GOOS)
 	fmt.Printf("Golang version: %s\n", runtime.Version())
@@ -1140,7 +1140,7 @@ func startVersionChecker(ctx context.Context, nd *core.IpfsNode, enabled bool, p
 	defer ticker.Stop()
 	go func() {
 		for {
-			o, err := commands.DetectNewKuboVersion(nd, percentThreshold)
+			o, err := commands.DetectNewEmoVersion(nd, percentThreshold)
 			if err != nil {
 				// The version check is best-effort, and may fail in custom
 				// configurations that do not run standard WAN DHT. If it
@@ -1151,11 +1151,11 @@ func startVersionChecker(ctx context.Context, nd *core.IpfsNode, enabled bool, p
 			if o.UpdateAvailable {
 				newerPercent := fmt.Sprintf("%.0f%%", math.Round(float64(o.WithGreaterVersion)/float64(o.PeersSampled)*100))
 				log.Errorf(`
-⚠️ A NEW VERSION OF KUBO DETECTED
+⚠️ A NEW VERSION OF EMO DETECTED
 
-This Kubo node is running an outdated version (%s).
-%s of the sampled Kubo peers are running a higher version.
-Visit https://github.com/ipfs/kubo/releases or https://dist.ipfs.tech/#kubo and update to version %s or later.`,
+This Emo node is running an outdated version (%s).
+%s of the sampled Emo peers are running a higher version.
+Visit https://github.com/ipfs/emo/releases or https://dist.ipfs.tech/#emo and update to version %s or later.`,
 					o.RunningVersion, newerPercent, o.GreatestVersion)
 			}
 			select {

@@ -11,8 +11,8 @@ import (
 	"github.com/ipfs/boxo/path"
 	cmds "github.com/ipfs/go-ipfs-cmds"
 	logging "github.com/ipfs/go-log"
-	cmdenv "github.com/ipfs/kubo/core/commands/cmdenv"
-	options "github.com/ipfs/kubo/core/coreiface/options"
+	cmdenv "github.com/ipfs/emo/core/commands/cmdenv"
+	options "github.com/ipfs/emo/core/coreiface/options"
 )
 
 var log = logging.Logger("core/commands/ipns")

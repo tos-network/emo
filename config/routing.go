@@ -16,7 +16,7 @@ const (
 var (
 	// Default HTTP routers used in parallel to DHT when Routing.Type = "auto"
 	DefaultHTTPRouters = getEnvOrDefault("IPFS_HTTP_ROUTERS", []string{
-		"https://cid.contact", // https://github.com/ipfs/kubo/issues/9422#issuecomment-1338142084
+		"https://cid.contact", // https://github.com/ipfs/emo/issues/9422#issuecomment-1338142084
 	})
 
 	// Default filter-protocols to pass along with delegated routing requests (as defined in IPIP-484)

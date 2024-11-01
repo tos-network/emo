@@ -13,8 +13,8 @@ import (
 
 	"github.com/ipfs/boxo/namesys"
 	"github.com/ipfs/boxo/namesys/republisher"
-	"github.com/ipfs/kubo/repo"
-	irouting "github.com/ipfs/kubo/routing"
+	"github.com/ipfs/emo/repo"
+	irouting "github.com/ipfs/emo/routing"
 )
 
 const DefaultIpnsCacheSize = 128

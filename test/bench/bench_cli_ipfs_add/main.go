@@ -10,10 +10,10 @@ import (
 	"path"
 	"testing"
 
-	"github.com/ipfs/kubo/thirdparty/unit"
+	"github.com/ipfs/emo/thirdparty/unit"
 
 	random "github.com/ipfs/go-test/random"
-	config "github.com/ipfs/kubo/config"
+	config "github.com/ipfs/emo/config"
 )
 
 var (

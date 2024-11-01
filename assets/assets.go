@@ -5,8 +5,8 @@ import (
 	"fmt"
 	gopath "path"
 
-	"github.com/ipfs/kubo/core"
-	"github.com/ipfs/kubo/core/coreapi"
+	"github.com/ipfs/emo/core"
+	"github.com/ipfs/emo/core/coreapi"
 
 	"github.com/ipfs/boxo/files"
 	cid "github.com/ipfs/go-cid"

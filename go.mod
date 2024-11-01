@@ -1,4 +1,4 @@
-module github.com/ipfs/kubo
+module github.com/ipfs/emo
 
 go 1.23
 

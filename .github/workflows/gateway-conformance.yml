@@ -45,7 +45,7 @@ jobs:
         with:
           output: fixtures
 
-      # 2. Build the kubo-gateway
+      # 2. Build the emo-gateway
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
@@ -53,44 +53,44 @@ jobs:
       - uses: protocol/cache-go-action@v1
         with:
           name: ${{ github.job }}
-      - name: Checkout kubo-gateway
+      - name: Checkout emo-gateway
         uses: actions/checkout@v4
         with:
-          path: kubo-gateway
-      - name: Build kubo-gateway
+          path: emo-gateway
+      - name: Build emo-gateway
         run: make build
-        working-directory: kubo-gateway
+        working-directory: emo-gateway
 
-      # 3. Init the kubo-gateway
-      - name: Init kubo-gateway
+      # 3. Init the emo-gateway
+      - name: Init emo-gateway
         run: |
           ./ipfs init -e
           ./ipfs config --json Gateway.PublicGateways "$GATEWAY_PUBLIC_GATEWAYS"
-        working-directory: kubo-gateway/cmd/ipfs
+        working-directory: emo-gateway/cmd/ipfs
 
-      # 4. Populate the Kubo gateway with the gateway-conformance fixtures
+      # 4. Populate the Emo gateway with the gateway-conformance fixtures
       - name: Import fixtures
         run: |
           # Import car files
-          find ./fixtures -name '*.car' -exec kubo-gateway/cmd/ipfs/ipfs dag import --pin-roots=false {} \;
+          find ./fixtures -name '*.car' -exec emo-gateway/cmd/ipfs/ipfs dag import --pin-roots=false {} \;
 
           # Import ipns records
           records=$(find ./fixtures -name '*.ipns-record')
           for record in $records
           do
               key=$(basename -s .ipns-record "$record" | cut -d'_' -f1)
-              kubo-gateway/cmd/ipfs/ipfs routing put --allow-offline "/ipns/$key" "$record"
+              emo-gateway/cmd/ipfs/ipfs routing put --allow-offline "/ipns/$key" "$record"
           done
 
           # Import dnslink records
           # the IPFS_NS_MAP env will be used by the daemon
           echo "IPFS_NS_MAP=$(cat ./fixtures/dnslinks.IPFS_NS_MAP)" >> $GITHUB_ENV
 
-      # 5. Start the kubo-gateway
-      - name: Start kubo-gateway
+      # 5. Start the emo-gateway
+      - name: Start emo-gateway
         run: |
           ./ipfs daemon --offline &
-        working-directory: kubo-gateway/cmd/ipfs
+        working-directory: emo-gateway/cmd/ipfs
 
       # 6. Run the gateway-conformance tests
       - name: Run gateway-conformance tests
@@ -132,7 +132,7 @@ jobs:
         with:
           output: fixtures
 
-      # 2. Build the kubo-gateway
+      # 2. Build the emo-gateway
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
@@ -140,56 +140,56 @@ jobs:
       - uses: protocol/cache-go-action@v1
         with:
           name: ${{ github.job }}
-      - name: Checkout kubo-gateway
+      - name: Checkout emo-gateway
         uses: actions/checkout@v4
         with:
-          path: kubo-gateway
-      - name: Build kubo-gateway
+          path: emo-gateway
+      - name: Build emo-gateway
         run: make build
-        working-directory: kubo-gateway
+        working-directory: emo-gateway
 
-      # 3. Init the kubo-gateway
-      - name: Init kubo-gateway
+      # 3. Init the emo-gateway
+      - name: Init emo-gateway
         run: |
           ./ipfs init --profile=test
           ./ipfs config --json Gateway.PublicGateways "$GATEWAY_PUBLIC_GATEWAYS"
           ./ipfs config --json Experimental.GatewayOverLibp2p true
           ./ipfs config Addresses.Gateway "/ip4/127.0.0.1/tcp/8080"
           ./ipfs config Addresses.API "/ip4/127.0.0.1/tcp/5001"
-        working-directory: kubo-gateway/cmd/ipfs
+        working-directory: emo-gateway/cmd/ipfs
 
-      # 4. Populate the Kubo gateway with the gateway-conformance fixtures
+      # 4. Populate the Emo gateway with the gateway-conformance fixtures
       - name: Import fixtures
         run: |
           # Import car files
-          find ./fixtures -name '*.car' -exec kubo-gateway/cmd/ipfs/ipfs dag import --pin-roots=false {} \;
+          find ./fixtures -name '*.car' -exec emo-gateway/cmd/ipfs/ipfs dag import --pin-roots=false {} \;
 
-      # 5. Start the kubo-gateway
-      - name: Start kubo-gateway
+      # 5. Start the emo-gateway
+      - name: Start emo-gateway
         run: |
           ( ./ipfs daemon & ) | sed '/Daemon is ready/q'
           while [[ "$(./ipfs id | jq '.Addresses | length')" == '0' ]]; do sleep 1; done
-        working-directory: kubo-gateway/cmd/ipfs
+        working-directory: emo-gateway/cmd/ipfs
 
-      # 6. Setup a kubo http-p2p-proxy to expose libp2p protocol as a regular HTTP port for gateway conformance tests
-      - name: Init p2p-proxy kubo node
+      # 6. Setup a emo http-p2p-proxy to expose libp2p protocol as a regular HTTP port for gateway conformance tests
+      - name: Init p2p-proxy emo node
         env:
-          IPFS_PATH: "~/.kubo-p2p-proxy"
+          IPFS_PATH: "~/.emo-p2p-proxy"
         run: |
           ./ipfs init --profile=test -e
           ./ipfs config --json Experimental.Libp2pStreamMounting true
           ./ipfs config Addresses.Gateway "/ip4/127.0.0.1/tcp/8081"
           ./ipfs config Addresses.API "/ip4/127.0.0.1/tcp/5002"
-        working-directory: kubo-gateway/cmd/ipfs
+        working-directory: emo-gateway/cmd/ipfs
 
-      # 7. Start the kubo http-p2p-proxy
-      - name: Start kubo http-p2p-proxy
+      # 7. Start the emo http-p2p-proxy
+      - name: Start emo http-p2p-proxy
         env:
-          IPFS_PATH: "~/.kubo-p2p-proxy"
+          IPFS_PATH: "~/.emo-p2p-proxy"
         run: |
           ( ./ipfs daemon & ) | sed '/Daemon is ready/q'
           while [[ "$(./ipfs id | jq '.Addresses | length')" == '0' ]]; do sleep 1; done
-        working-directory: kubo-gateway/cmd/ipfs
+        working-directory: emo-gateway/cmd/ipfs
 
       # 8. Start forwarding data from the http-p2p-proxy to the node serving the Gateway API over libp2p
       - name: Start http-over-libp2p forwarding proxy
@@ -197,7 +197,7 @@ jobs:
           gatewayNodeId=$(./ipfs --api=/ip4/127.0.0.1/tcp/5001 id -f="<id>")
           ./ipfs --api=/ip4/127.0.0.1/tcp/5002 swarm connect $(./ipfs --api=/ip4/127.0.0.1/tcp/5001 swarm addrs local --id | head -n 1)
           ./ipfs --api=/ip4/127.0.0.1/tcp/5002 p2p forward --allow-custom-protocol /http/1.1 /ip4/127.0.0.1/tcp/8092 /p2p/$gatewayNodeId
-        working-directory: kubo-gateway/cmd/ipfs
+        working-directory: emo-gateway/cmd/ipfs
 
       # 9. Run the gateway-conformance tests over libp2p
       - name: Run gateway-conformance tests over libp2p

@@ -3,9 +3,9 @@ package main
 import (
 	"os"
 
-	"github.com/ipfs/kubo/cmd/ipfs/kubo"
+	"github.com/ipfs/emo/cmd/ipfs/emo"
 )
 
 func main() {
-	os.Exit(kubo.Start(kubo.BuildDefaultEnv))
+	os.Exit(emo.Start(emo.BuildDefaultEnv))
 }

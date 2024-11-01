@@ -7,8 +7,8 @@ import (
 	"io"
 	"path"
 
-	"github.com/ipfs/kubo/core/commands/cmdenv"
-	"github.com/ipfs/kubo/core/commands/cmdutils"
+	"github.com/ipfs/emo/core/commands/cmdenv"
+	"github.com/ipfs/emo/core/commands/cmdutils"
 
 	cid "github.com/ipfs/go-cid"
 	cidenc "github.com/ipfs/go-cidutil/cidenc"
@@ -287,7 +287,7 @@ func (s *DagStat) MarshalJSON() ([]byte, error) {
 	type Alias DagStat
 	/*
 		We can't rely on cid.Cid.MarshalJSON since it uses the {"/": "..."}
-		format. To make the output consistent and follow the Kubo API patterns
+		format. To make the output consistent and follow the Emo API patterns
 		we use the Cid.String method
 	*/
 	return json.Marshal(struct {
@@ -302,7 +302,7 @@ func (s *DagStat) MarshalJSON() ([]byte, error) {
 func (s *DagStat) UnmarshalJSON(data []byte) error {
 	/*
 		We can't rely on cid.Cid.UnmarshalJSON since it uses the {"/": "..."}
-		format. To make the output consistent and follow the Kubo API patterns
+		format. To make the output consistent and follow the Emo API patterns
 		we use the Cid.Parse method
 	*/
 	type Alias DagStat

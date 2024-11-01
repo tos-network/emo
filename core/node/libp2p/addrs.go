@@ -7,8 +7,8 @@ import (
 	"path/filepath"
 
 	logging "github.com/ipfs/go-log"
-	version "github.com/ipfs/kubo"
-	"github.com/ipfs/kubo/config"
+	version "github.com/ipfs/emo"
+	"github.com/ipfs/emo/config"
 	p2pforge "github.com/ipshipyard/p2p-forge/client"
 	"github.com/libp2p/go-libp2p"
 	"github.com/libp2p/go-libp2p/core/host"

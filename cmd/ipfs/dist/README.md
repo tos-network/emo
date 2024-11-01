@@ -1,6 +1,6 @@
 # ipfs command line tool
 
-This is a [command line tool for interacting with Kubo](https://docs.ipfs.tech/install/command-line/),
+This is a [command line tool for interacting with Emo](https://docs.ipfs.tech/install/command-line/),
 an [IPFS](https://ipfs.tech) implementation. It contains a full IPFS node.
 
 ## Install

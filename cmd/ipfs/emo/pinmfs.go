@@ -1,4 +1,4 @@
-package kubo
+package emo
 
 import (
 	"context"
@@ -14,8 +14,8 @@ import (
 	ipld "github.com/ipfs/go-ipld-format"
 	logging "github.com/ipfs/go-log/v2"
 
-	config "github.com/ipfs/kubo/config"
-	"github.com/ipfs/kubo/core"
+	config "github.com/ipfs/emo/config"
+	"github.com/ipfs/emo/core"
 )
 
 // mfslog is the logger for remote mfs pinning.

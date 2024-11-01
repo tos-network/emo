@@ -50,7 +50,7 @@ func TestHttpFetch(t *testing.T) {
 
 	fetcher := NewHttpFetcher(testIpfsDist, testServer.URL, "", 0)
 
-	out, err := fetcher.Fetch(ctx, "/kubo/versions")
+	out, err := fetcher.Fetch(ctx, "/emo/versions")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -179,7 +179,7 @@ func TestMultiFetcher(t *testing.T) {
 
 	mf := NewMultiFetcher(badFetcher, fetcher)
 
-	vers, err := mf.Fetch(ctx, "/kubo/versions")
+	vers, err := mf.Fetch(ctx, "/emo/versions")
 	if err != nil {
 		t.Fatal(err)
 	}

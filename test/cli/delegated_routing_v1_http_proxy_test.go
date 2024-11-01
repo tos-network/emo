@@ -4,9 +4,9 @@ import (
 	"testing"
 
 	"github.com/ipfs/boxo/ipns"
-	"github.com/ipfs/kubo/config"
-	"github.com/ipfs/kubo/test/cli/harness"
-	"github.com/ipfs/kubo/test/cli/testutils"
+	"github.com/ipfs/emo/config"
+	"github.com/ipfs/emo/test/cli/harness"
+	"github.com/ipfs/emo/test/cli/testutils"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -30,14 +30,14 @@ func TestRoutingV1Proxy(t *testing.T) {
 			cfg.Discovery.MDNS.Enabled = false
 			cfg.Routing.Type = config.NewOptionalString("custom")
 			cfg.Routing.Methods = config.Methods{
-				config.MethodNameFindPeers:     {RouterName: "KuboA"},
-				config.MethodNameFindProviders: {RouterName: "KuboA"},
-				config.MethodNameGetIPNS:       {RouterName: "KuboA"},
-				config.MethodNamePutIPNS:       {RouterName: "KuboA"},
-				config.MethodNameProvide:       {RouterName: "KuboA"},
+				config.MethodNameFindPeers:     {RouterName: "EmoA"},
+				config.MethodNameFindProviders: {RouterName: "EmoA"},
+				config.MethodNameGetIPNS:       {RouterName: "EmoA"},
+				config.MethodNamePutIPNS:       {RouterName: "EmoA"},
+				config.MethodNameProvide:       {RouterName: "EmoA"},
 			}
 			cfg.Routing.Routers = config.Routers{
-				"KuboA": config.RouterParser{
+				"EmoA": config.RouterParser{
 					Router: config.Router{
 						Type: config.RouterTypeHTTP,
 						Parameters: &config.HTTPRouterParams{
@@ -55,7 +55,7 @@ func TestRoutingV1Proxy(t *testing.T) {
 		return nodes
 	}
 
-	t.Run("Kubo can find provider for CID via Routing V1", func(t *testing.T) {
+	t.Run("Emo can find provider for CID via Routing V1", func(t *testing.T) {
 		t.Parallel()
 		nodes := setupNodes(t)
 
@@ -65,7 +65,7 @@ func TestRoutingV1Proxy(t *testing.T) {
 		assert.Equal(t, nodes[0].PeerID().String(), res.Stdout.Trimmed())
 	})
 
-	t.Run("Kubo can find peer via Routing V1", func(t *testing.T) {
+	t.Run("Emo can find peer via Routing V1", func(t *testing.T) {
 		t.Parallel()
 		nodes := setupNodes(t)
 
@@ -85,7 +85,7 @@ func TestRoutingV1Proxy(t *testing.T) {
 		assert.Equal(t, node.SwarmAddrs()[0].String(), res.Stdout.Trimmed())
 	})
 
-	t.Run("Kubo can retrieve IPNS record via Routing V1", func(t *testing.T) {
+	t.Run("Emo can retrieve IPNS record via Routing V1", func(t *testing.T) {
 		t.Parallel()
 		nodes := setupNodes(t)
 
@@ -108,7 +108,7 @@ func TestRoutingV1Proxy(t *testing.T) {
 		require.Equal(t, path, value.String())
 	})
 
-	t.Run("Kubo can resolve IPNS name via Routing V1", func(t *testing.T) {
+	t.Run("Emo can resolve IPNS name via Routing V1", func(t *testing.T) {
 		t.Parallel()
 		nodes := setupNodes(t)
 
@@ -127,7 +127,7 @@ func TestRoutingV1Proxy(t *testing.T) {
 		require.Equal(t, path, res.Stdout.Trimmed())
 	})
 
-	t.Run("Kubo can provide IPNS record via Routing V1", func(t *testing.T) {
+	t.Run("Emo can provide IPNS record via Routing V1", func(t *testing.T) {
 		t.Parallel()
 		nodes := setupNodes(t)
 

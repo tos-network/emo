@@ -23,7 +23,7 @@ type AutoTLS struct {
 }
 
 const (
-	DefaultAutoTLSEnabled       = false // experimental, opt-in for now (https://github.com/ipfs/kubo/pull/10521)
+	DefaultAutoTLSEnabled       = false // experimental, opt-in for now (https://github.com/ipfs/emo/pull/10521)
 	DefaultDomainSuffix         = p2pforge.DefaultForgeDomain
 	DefaultRegistrationEndpoint = p2pforge.DefaultForgeEndpoint
 	DefaultCAEndpoint           = p2pforge.DefaultCAEndpoint

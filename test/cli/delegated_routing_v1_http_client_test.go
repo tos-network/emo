@@ -5,9 +5,9 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/ipfs/kubo/config"
-	"github.com/ipfs/kubo/test/cli/harness"
-	. "github.com/ipfs/kubo/test/cli/testutils"
+	"github.com/ipfs/emo/config"
+	"github.com/ipfs/emo/test/cli/harness"
+	. "github.com/ipfs/emo/test/cli/testutils"
 	"github.com/stretchr/testify/assert"
 )
 
