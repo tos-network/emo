@@ -35,7 +35,6 @@ const (
 func InitializeStorage(cfg *Config) (Storage, error) {
 	switch cfg.StorageBackend {
 	case InMemoryStorage:
-		log.Println("Using in-memory storage")
 		return newInMemoryStorage(), nil
 	case LevelDBStorage:
 		log.Println("Using LevelDB storage")
@@ -48,7 +47,6 @@ func InitializeStorage(cfg *Config) (Storage, error) {
 		log.Printf("Using LevelDB storage at %s\n", cfg.LevelDBPath)
 		return NewDatabase(cfg.LevelDBPath)
 	default:
-		log.Println("Using in-memory storage")
 		return newInMemoryStorage(), nil
 	}
 }
