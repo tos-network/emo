@@ -1,0 +1,16 @@
+name: CI
+
+on: [push, workflow_dispatch]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    container:
+      image: golang:1.23
+
+    steps:
+      - uses: actions/checkout@v4.2.2
+
+      - name: Test package
+        run: go test -v -race ./...

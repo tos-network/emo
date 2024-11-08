@@ -1,0 +1,50 @@
+namespace Kademlia;
+
+table Node {
+  id:      [ubyte];
+  address: [ubyte];
+}
+
+table Value {
+  key:     [ubyte];
+  value:   [ubyte];
+  ttl:     long;
+  created: long;
+}
+
+table FindNode {
+  key:    [ubyte];
+  nodes:  [Node];
+}
+
+table FindValue {
+  key:    [ubyte];
+  values: [Value];
+  nodes:  [Node];
+  from:   long;
+  found:  long;
+}
+
+table Store {
+  values: [Value];
+}
+
+union Operation { FindNode, FindValue, Store }
+
+enum EventType : byte {
+    PING =       0,
+    PONG =       1,
+    STORE =      2,
+    FIND_NODE =  3,
+    FIND_VALUE = 4,
+}
+
+table Event {
+  id:       [ubyte];
+  sender:   [ubyte];
+  event:    EventType;
+  response: bool;
+  payload:  Operation;
+}
+
+root_type Event;
