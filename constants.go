@@ -25,4 +25,6 @@ const (
 	KEY_BITS = 256
 	// KEY_BYTES number of bytes in a key
 	KEY_BYTES = KEY_BITS / 8
+	// VALUE_BYTES maximum bytecode size that a value can have.
+	VALUE_BYTES = 32 * 1024 // 32KiB
 )

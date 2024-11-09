@@ -259,7 +259,7 @@ func (d *DHT) Store(key, value []byte, ttl time.Duration, callback func(err erro
 	}
 
 	// value must be smaller than 32 kb
-	if len(value) > 32768 {
+	if len(value) > VALUE_BYTES {
 		callback(errors.New("value must be less than 32kb in length"))
 		return
 	}

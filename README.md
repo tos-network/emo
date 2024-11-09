@@ -135,7 +135,7 @@ $ nohup ./emo daemon > emo.log 2>&1 &
 ```
 This will start the emo daemon in the background and output the log to emo.log.
 
-## Implemented
+## Implemented Features
 - [✅] routing
 - [✅] storage (custom)
 - [✅] storage (in-memory)
@@ -153,11 +153,4 @@ This will start the emo daemon in the background and output the log to emo.log.
 - [✅] peer refresh
 - [✅] key refresh
 - [✅] latency based route selection
-
-## Future Improvements
-- [ ] io_uring socket handler
-- [ ] storage (persistent)
-- [ ] NAT traversal
-- [ ] support SO_REUSEPORT on mac/windows
-- [ ] configurable logging
-- [ ] ntp time
+- [✅] storage (persistent)
